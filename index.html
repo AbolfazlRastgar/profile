@@ -208,7 +208,7 @@
     input.addEventListener("keydown", function (e) {
       if (e.key !== "Enter") return;
 
-      const value = input.value.trim();
+      const value = input.value.trim().toLowerCase();
       if (!value) return;
 
       printCommandEcho(value);
