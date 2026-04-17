@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Personal page</title>
+  <title>My personal page</title>
 
   <style>
     @font-face {
@@ -92,15 +92,6 @@
     .echo-command {
       color: #ffffff;
     }
-
-    a {
-      color: #8ab4f8;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
   </style>
 </head>
 <body>
@@ -116,7 +107,7 @@
 
     <div id="currentLine" class="input-line">
       <span class="prompt-wrap">
-        <span class="prompt">$</span>&nbsp;
+        <span class="prompt">abolfazl@linux</span>:<span class="path">~</span>$&nbsp;
       </span>
       <input id="commandInput" type="text" autocomplete="off" autofocus />
     </div>
@@ -132,19 +123,20 @@
     const commands = {
       help: [
         "Available commands:",
-        "about",
-        "education",
-        "resume",
-        "projects",
-        "contact",
-        "clear"
+        "",
+        "about      - Professional background",
+        "education  - Academic history",
+        "resume     - Download my resume",
+        "projects   - My projects repo",
+        "contact    - Contact information",
+        "clear      - Clear the terminal"
       ],
 
       about: [
         "I'm Abolfazl Rastgar, a Microsoft SQL Server Expert with 4+ years of experience",
         "in SQL Server administration, performance tuning, ETL development, and reporting systems.",
-        "My work includes large-scale database environments, HA/DR architecture, monitoring,",
-        "query optimization, and building reliable data pipelines for analytical workloads. in my resume and my project, you can find more details"
+        "I have worked with large-scale database environments, HA/DR architecture, monitoring,",
+        "query optimization, and building reliable data pipelines. in my resume and projects repo you can find more details"
       ],
 
       education: [
@@ -183,7 +175,7 @@
     function printCommandEcho(command) {
       const div = document.createElement("div");
       div.className = "line";
-      div.innerHTML = `<span class="prompt">$</span> <span class="echo-command"></span>`;
+      div.innerHTML = `<span class="prompt">abolfazl@linux</span>:<span class="path">~</span>$ <span class="echo-command"></span>`;
       div.querySelector(".echo-command").textContent = command;
       output.appendChild(div);
     }
