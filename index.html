@@ -1,301 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My profile</title>
+<meta charset="UTF-8">
+<title>My personal page</title>
 
-  <style>
-    @font-face {
-      font-family: 'UbuntuMono';
-      src: url('./fonts/UbuntuMono-Regular.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
-    }
+<style>
+@font-face {
+  font-family: 'UbuntuMono';
+  src: url('./fonts/UbuntuMono-Regular.ttf') format('truetype');
+}
 
-    @font-face {
-      font-family: 'UbuntuMono';
-      src: url('./fonts/UbuntuMono-Bold.ttf') format('truetype');
-      font-weight: bold;
-      font-style: normal;
-    }
+body {
+  margin: 0;
+  background: #000;
+  color: #eaeaea;
+  font-family: 'UbuntuMono', monospace;
+  padding: 20px;
+  font-size: 20px;
+}
 
-    :root {
-      --bg: #000000;
-      --text: #eaeaea;
-      --green: #7CFC00;
-      --blue: #6fa8dc;
-      --muted: #b7b7b7;
-      --yellow: #ffd966;
-      --red: #ff6b6b;
-    }
+#intro {
+  border-bottom: 1px solid #222;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
 
-    * {
-      box-sizing: border-box;
-    }
+.line {
+  margin-bottom: 5px;
+  white-space: pre-wrap;
+}
 
-    html, body {
-      margin: 0;
-      min-height: 100%;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'UbuntuMono', monospace;
-      font-size: 20px;
-    }
+.prompt {
+  color: #7CFC00;
+}
 
-    body {
-      padding: 18px 20px;
-    }
+.path {
+  color: #6fa8dc;
+}
 
-    #intro {
-      border-bottom: 1px solid #222;
-      padding-bottom: 14px;
-      margin-bottom: 14px;
-    }
+.info {
+  color: #ffd966;
+}
 
-    #intro .line {
-      color: var(--muted);
-    }
+.error {
+  color: #ff6b6b;
+}
 
-    #terminal {
-      min-height: 60vh;
-    }
-
-    .line {
-      white-space: pre-wrap;
-      word-break: break-word;
-      line-height: 1.6;
-      margin-bottom: 4px;
-    }
-
-    .prompt {
-      color: var(--green);
-    }
-
-    .path {
-      color: var(--blue);
-    }
-
-    .info {
-      color: var(--yellow);
-    }
-
-    .error {
-      color: var(--red);
-    }
-
-    .input-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 6px;
-    }
-
-    .prompt-wrap {
-      white-space: nowrap;
-    }
-
-    input {
-      flex: 1;
-      min-width: 220px;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: var(--text);
-      font: inherit;
-    }
-
-    a {
-      color: #8ab4f8;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .caret {
-      display: inline-block;
-      animation: blink 1s step-end infinite;
-    }
-
-    @keyframes blink {
-      50% {
-        opacity: 0;
-      }
-    }
-  </style>
+input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font: inherit;
+  width: 70%;
+}
+</style>
 </head>
+
 <body>
-  <div id="intro">
-    <div class="line">Welcome to mt personal page</div>
-    <div class="line">Role: Microsoft SQL Server Expert</div>
-    <div class="line">Type <span class="info">'help'</span> to see available commands</div>
-    <div class="line">Suggested commands: about, role, skills, projects, contact, clear</div>
+
+<!-- 🔹 INTRO -->
+<div id="intro">
+  <div class="line">
+    Welcome to my personal page. Here you can explore my academic and professional background,
+    and occasionally find some of my projects. Type <span class="info">'help'</span> to get started.
   </div>
 
-  <div id="terminal"></div>
-
-  <div class="input-row">
-    <span class="prompt-wrap">
-      <span class="prompt">abolfazl@linux</span>:<span class="path">~</span>$
-    </span>
-    <input id="input" autofocus autocomplete="off" />
+  <div class="line">
+    <span class="prompt">abolfazl@linux</span>:<span class="path">~</span>$
   </div>
+</div>
 
-  <script>
-    const terminal = document.getElementById("terminal");
-    const input = document.getElementById("input");
+<!-- 🔹 TERMINAL OUTPUT -->
+<div id="terminal"></div>
 
-    let pendingAction = null;
+<!-- 🔹 INPUT -->
+<div class="line">
+  <span class="prompt">abolfazl@linux</span>:<span class="path">~</span>$ 
+  <input id="input" autofocus>
+</div>
 
-    const commands = {
-      help: [
-        "Available commands:",
-        "about      - short introduction",
-        "role       - current role",
-        "skills     - technical skills",
-        "projects   - project list",
-        "contact    - contact info",
-        "clear      - clear terminal output"
-      ],
-      about: [
-        "Hi, I'm Abolfazl Rastgar.",
-        "I'm a Microsoft SQL Server Expert focused on performance tuning, query optimization, and database reliability."
-      ],
-      role: [
-        "Microsoft SQL Server Expert"
-      ],
-      skills: [
-        "SQL Server",
-        "T-SQL",
-        "Performance Tuning",
-        "Query Optimization",
-        "Indexing",
-        "Backup & Recovery",
-        "High Availability"
-      ],
-      contact: [
-        "Email: your-email@example.com",
-        "LinkedIn: linkedin.com/in/your-profile"
-      ]
-    };
+<script>
+const terminal = document.getElementById("terminal");
+const input = document.getElementById("input");
 
-    const projects = {
-      "sql-tuning-case-study": {
-        title: "SQL Tuning Case Study",
-        file: "./files/sql-tuning-case-study.pdf"
-      },
-      "ha-dr-architecture": {
-        title: "HA/DR Architecture Notes",
-        file: "./files/ha-dr-architecture.pdf"
-      }
-    };
+let pendingAction = null;
 
-    function printLine(text, className = "") {
-      const div = document.createElement("div");
-      div.className = `line ${className}`.trim();
-      div.textContent = text;
-      terminal.appendChild(div);
+// 🔹 COMMANDS
+const commands = {
+  help: [
+    "Available commands:",
+    "about",
+    "education",
+    "resume",
+    "projects",
+    "contact",
+    "clear"
+  ],
+
+  about: [
+    "I'm Abolfazl Rastgar, a Microsoft SQL Server Expert with 4+ years of experience",
+    "in database administration, performance tuning, ETL development, and reporting systems.",
+    "I have worked with large-scale SQL Server environments, HA/DR architectures,",
+    "monitoring systems, and building reliable data pipelines for analytical workloads."
+  ],
+
+  education: [
+    "M.Sc. in Computer Engineering",
+    "Iran University of Science and Technology (IUST), Tehran, Iran",
+    "Sep 2020 - Dec 2022"
+  ],
+
+  contact: [
+    "Email: ablfzl.rstgr@gmail.com"
+  ]
+};
+
+// 🔹 DOWNLOADS
+const downloads = {
+  resume: {
+    title: "Abolfazl Rastgar Resume",
+    file: "./files/abolfazl-rastgar-resume.pdf"
+  }
+};
+
+// 🔹 PROJECTS (فعلاً نمونه)
+const projects = {
+  "sql-project": {
+    title: "SQL Optimization Case Study",
+    file: "./files/sql-project.pdf"
+  }
+};
+
+// 🔹 PRINT
+function printLine(text, cls = "") {
+  const div = document.createElement("div");
+  div.className = "line " + cls;
+  div.textContent = text;
+  terminal.appendChild(div);
+}
+
+// 🔹 COMMAND ECHO
+function echo(cmd) {
+  printLine(`abolfazl@linux:~$ ${cmd}`);
+}
+
+// 🔹 DOWNLOAD
+function triggerDownload(path) {
+  const a = document.createElement("a");
+  a.href = path;
+  a.download = "";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+
+// 🔹 PROJECT LIST
+function showProjects() {
+  printLine("Available projects:");
+  Object.keys(projects).forEach(p => {
+    printLine("- " + p);
+  });
+  printLine("Type project name to download.");
+}
+
+// 🔹 INPUT HANDLER
+input.addEventListener("keydown", function(e) {
+  if (e.key !== "Enter") return;
+
+  const value = input.value.trim();
+  if (!value) return;
+
+  echo(value);
+  input.value = "";
+
+  // pending (y/n)
+  if (pendingAction) {
+    if (value === "y") {
+      triggerDownload(pendingAction.file);
+      printLine("Downloading...", "info");
+    } else {
+      printLine("Cancelled.");
     }
+    pendingAction = null;
+    return;
+  }
 
-    function printHTML(html, className = "") {
-      const div = document.createElement("div");
-      div.className = `line ${className}`.trim();
-      div.innerHTML = html;
-      terminal.appendChild(div);
-    }
+  // clear
+  if (value === "clear") {
+    terminal.innerHTML = "";
+    return;
+  }
 
-    function echoCommand(command) {
-      printHTML(
-        `<span class="prompt">abolfazl@linux</span>:<span class="path">~</span>$ ${escapeHtml(command)}`
-      );
-    }
+  // resume
+  if (value === "resume") {
+    pendingAction = downloads.resume;
+    printLine(`Download "${downloads.resume.title}"? (y/n)`, "info");
+    return;
+  }
 
-    function escapeHtml(str) {
-      return str
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;");
-    }
+  // projects
+  if (value === "projects") {
+    showProjects();
+    return;
+  }
 
-    function clearTerminal() {
-      terminal.innerHTML = "";
-    }
+  // project download
+  if (projects[value]) {
+    pendingAction = projects[value];
+    printLine(`Download "${projects[value].title}"? (y/n)`, "info");
+    return;
+  }
 
-    function triggerDownload(path, filename = "") {
-      const a = document.createElement("a");
-      a.href = path;
-      if (filename) a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    }
+  // normal commands
+  if (commands[value]) {
+    commands[value].forEach(line => printLine(line));
+  } else {
+    printLine("command not found", "error");
+  }
+});
+</script>
 
-    function showProjects() {
-      printLine("Available projects:");
-      Object.entries(projects).forEach(([key, value]) => {
-        printLine(`- ${key}  |  ${value.title}`);
-      });
-      printLine("To download a project PDF, type its name.");
-      printLine("Example: sql-tuning-case-study");
-    }
-
-    input.addEventListener("keydown", function (e) {
-      if (e.key !== "Enter") return;
-
-      const value = input.value.trim();
-      if (!value) return;
-
-      echoCommand(value);
-      input.value = "";
-
-      if (pendingAction) {
-        if (value.toLowerCase() === "y") {
-          triggerDownload(pendingAction.file);
-          printLine(`Downloading ${pendingAction.title}...`, "info");
-        } else if (value.toLowerCase() === "n") {
-          printLine("Download cancelled.");
-        } else {
-          printLine("Please enter y or n.", "error");
-          return;
-        }
-
-        pendingAction = null;
-        window.scrollTo(0, document.body.scrollHeight);
-        return;
-      }
-
-      if (value === "clear") {
-        clearTerminal();
-        window.scrollTo(0, document.body.scrollHeight);
-        return;
-      }
-
-      if (value === "projects") {
-        showProjects();
-        window.scrollTo(0, document.body.scrollHeight);
-        return;
-      }
-
-      if (projects[value]) {
-        const project = projects[value];
-        printLine(`Do you want to download "${project.title}"? (y/n)`, "info");
-        pendingAction = project;
-        window.scrollTo(0, document.body.scrollHeight);
-        return;
-      }
-
-      if (commands[value]) {
-        commands[value].forEach(line => printLine(line));
-      } else {
-        printLine(`Command not found: ${value}`, "error");
-        printLine(`Type 'help' to see available commands.`);
-      }
-
-      window.scrollTo(0, document.body.scrollHeight);
-    });
-  </script>
 </body>
 </html>
