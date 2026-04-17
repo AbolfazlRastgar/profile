@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My personal page</title>
+  <title>Personal page</title>
 
   <style>
     @font-face {
@@ -11,6 +11,17 @@
       src: url('./fonts/UbuntuMono-Regular.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'UbuntuMono';
+      src: url('./fonts/UbuntuMono-Bold.ttf') format('truetype');
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
@@ -58,8 +69,6 @@
     .input-line {
       display: flex;
       align-items: baseline;
-      flex-wrap: nowrap;
-      gap: 0;
       white-space: nowrap;
     }
 
@@ -100,9 +109,6 @@
       Welcome to my personal page. Here you can explore my academic and professional background,
       and occasionally find some of my projects. Type <span class="info">'help'</span> to get started.
     </div>
-    <div class="line">
-      <span class="prompt">abolfazl@linux</span>:<span class="path">~</span>$
-    </div>
   </div>
 
   <div id="terminal">
@@ -110,7 +116,7 @@
 
     <div id="currentLine" class="input-line">
       <span class="prompt-wrap">
-        <span class="prompt">abolfazl@linux</span>:<span class="path">~</span>$&nbsp;
+        <span class="prompt">$</span>&nbsp;
       </span>
       <input id="commandInput" type="text" autocomplete="off" autofocus />
     </div>
@@ -138,13 +144,13 @@
         "I'm Abolfazl Rastgar, a Microsoft SQL Server Expert with 4+ years of experience",
         "in SQL Server administration, performance tuning, ETL development, and reporting systems.",
         "My work includes large-scale database environments, HA/DR architecture, monitoring,",
-        "query optimization, and building reliable data pipelines for analytical workloads. in my resume you can find more details"
+        "query optimization, and building reliable data pipelines for analytical workloads. in my resume and my project, you can find more details"
       ],
 
       education: [
         "M.Sc. in Computer Engineering",
         "Iran University of Science and Technology (IUST), Tehran, Iran",
-        "Sep 2020 - Dec 2022 - TOP 0.0001 entrance"
+        "Sep 2020 - Dec 2022",
         "Ranked 187 among ~90,000 participants in the national entrance exam"
       ],
 
@@ -177,7 +183,7 @@
     function printCommandEcho(command) {
       const div = document.createElement("div");
       div.className = "line";
-      div.innerHTML = `<span class="prompt">abolfazl@linux</span>:<span class="path">~</span>$ <span class="echo-command"></span>`;
+      div.innerHTML = `<span class="prompt">$</span> <span class="echo-command"></span>`;
       div.querySelector(".echo-command").textContent = command;
       output.appendChild(div);
     }
