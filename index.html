@@ -1,123 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Terminal</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My profile</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'UbuntuMono';
+      src: url('./fonts/UbuntuMono-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
 
-<style>
-body {
-  margin: 0;
-  background: #300a24;
-  color: #eeeeec;
-  font-family: 'Ubuntu Mono', monospace;
-  padding: 20px;
-  font-size: 18px;
-}
+    @font-face {
+      font-family: 'UbuntuMono';
+      src: url('./fonts/UbuntuMono-Bold.ttf') format('truetype');
+      font-weight: bold;
+      font-style: normal;
+    }
 
-.line {
-  margin-bottom: 6px;
-}
+    :root {
+      --bg: #000000;
+      --text: #eaeaea;
+      --green: #7CFC00;
+      --blue: #6fa8dc;
+      --muted: #b7b7b7;
+      --yellow: #ffd966;
+      --red: #ff6b6b;
+    }
 
-.prompt {
-  color: #8ae234;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.path {
-  color: #729fcf;
-}
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'UbuntuMono', monospace;
+      font-size: 20px;
+    }
 
-input {
-  background: transparent;
-  border: none;
-  outline: none;
-  color: white;
-  font: inherit;
-  width: 70%;
-}
+    body {
+      padding: 18px 20px;
+    }
 
-.cursor::after {
-  content: "_";
-  animation: blink 1s infinite;
-}
+    #intro {
+      border-bottom: 1px solid #222;
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+    }
 
-@keyframes blink {
-  50% { opacity: 0; }
-}
-</style>
+    #intro .line {
+      color: var(--muted);
+    }
+
+    #terminal {
+      min-height: 60vh;
+    }
+
+    .line {
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+      margin-bottom: 4px;
+    }
+
+    .prompt {
+      color: var(--green);
+    }
+
+    .path {
+      color: var(--blue);
+    }
+
+    .info {
+      color: var(--yellow);
+    }
+
+    .error {
+      color: var(--red);
+    }
+
+    .input-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .prompt-wrap {
+      white-space: nowrap;
+    }
+
+    input {
+      flex: 1;
+      min-width: 220px;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font: inherit;
+    }
+
+    a {
+      color: #8ab4f8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .caret {
+      display: inline-block;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div id="intro">
+    <div class="line">Welcome to mt personal page</div>
+    <div class="line">Role: Microsoft SQL Server Expert</div>
+    <div class="line">Type <span class="info">'help'</span> to see available commands</div>
+    <div class="line">Suggested commands: about, role, skills, projects, contact, clear</div>
+  </div>
 
-<div id="terminal"></div>
+  <div id="terminal"></div>
 
-<div class="line">
-  <span class="prompt">abolfazl@ubuntu</span>:<span class="path">~</span>$ 
-  <input id="input" autofocus class="cursor">
-</div>
+  <div class="input-row">
+    <span class="prompt-wrap">
+      <span class="prompt">abolfazl@linux</span>:<span class="path">~</span>$
+    </span>
+    <input id="input" autofocus autocomplete="off" />
+  </div>
 
-<script>
-const terminal = document.getElementById("terminal");
-const input = document.getElementById("input");
+  <script>
+    const terminal = document.getElementById("terminal");
+    const input = document.getElementById("input");
 
-const intro = [
-  "Welcome to mt personal page",
-  "Role: Microsoft SQL Server Expert",
-  "Type 'help' to start"
-];
+    let pendingAction = null;
 
-const commands = {
-  help: "about, role, skills, contact, clear",
-  about: "Abolfazl Rastgar - SQL Server Expert",
-  role: "Microsoft SQL Server Expert",
-  skills: "SQL Server | Performance Tuning | Indexing | T-SQL",
-  contact: "your@email.com"
-};
+    const commands = {
+      help: [
+        "Available commands:",
+        "about      - short introduction",
+        "role       - current role",
+        "skills     - technical skills",
+        "projects   - project list",
+        "contact    - contact info",
+        "clear      - clear terminal output"
+      ],
+      about: [
+        "Hi, I'm Abolfazl Rastgar.",
+        "I'm a Microsoft SQL Server Expert focused on performance tuning, query optimization, and database reliability."
+      ],
+      role: [
+        "Microsoft SQL Server Expert"
+      ],
+      skills: [
+        "SQL Server",
+        "T-SQL",
+        "Performance Tuning",
+        "Query Optimization",
+        "Indexing",
+        "Backup & Recovery",
+        "High Availability"
+      ],
+      contact: [
+        "Email: your-email@example.com",
+        "LinkedIn: linkedin.com/in/your-profile"
+      ]
+    };
 
-// تایپ اولیه
-async function typeIntro() {
-  for (let line of intro) {
-    let div = document.createElement("div");
-    div.className = "line";
-    terminal.appendChild(div);
+    const projects = {
+      "sql-tuning-case-study": {
+        title: "SQL Tuning Case Study",
+        file: "./files/sql-tuning-case-study.pdf"
+      },
+      "ha-dr-architecture": {
+        title: "HA/DR Architecture Notes",
+        file: "./files/ha-dr-architecture.pdf"
+      }
+    };
 
-    for (let char of line) {
-      div.textContent += char;
-      await new Promise(r => setTimeout(r, 20));
+    function printLine(text, className = "") {
+      const div = document.createElement("div");
+      div.className = `line ${className}`.trim();
+      div.textContent = text;
+      terminal.appendChild(div);
     }
-  }
-}
 
-typeIntro();
+    function printHTML(html, className = "") {
+      const div = document.createElement("div");
+      div.className = `line ${className}`.trim();
+      div.innerHTML = html;
+      terminal.appendChild(div);
+    }
 
-// هندل command
-input.addEventListener("keydown", function(e) {
-  if (e.key === "Enter") {
-    const cmd = input.value.trim();
+    function echoCommand(command) {
+      printHTML(
+        `<span class="prompt">abolfazl@linux</span>:<span class="path">~</span>$ ${escapeHtml(command)}`
+      );
+    }
 
-    // نمایش دستور
-    let line = document.createElement("div");
-    line.className = "line";
-    line.innerHTML = `<span class="prompt">abolfazl@ubuntu</span>:<span class="path">~</span>$ ${cmd}`;
-    terminal.appendChild(line);
+    function escapeHtml(str) {
+      return str
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;");
+    }
 
-    // جواب
-    let output = document.createElement("div");
-    output.className = "line";
-
-    if (cmd === "clear") {
+    function clearTerminal() {
       terminal.innerHTML = "";
-    } else {
-      output.textContent = commands[cmd] || "command not found";
-      terminal.appendChild(output);
     }
 
-    input.value = "";
-    window.scrollTo(0, document.body.scrollHeight);
-  }
-});
-</script>
+    function triggerDownload(path, filename = "") {
+      const a = document.createElement("a");
+      a.href = path;
+      if (filename) a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
 
+    function showProjects() {
+      printLine("Available projects:");
+      Object.entries(projects).forEach(([key, value]) => {
+        printLine(`- ${key}  |  ${value.title}`);
+      });
+      printLine("To download a project PDF, type its name.");
+      printLine("Example: sql-tuning-case-study");
+    }
+
+    input.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter") return;
+
+      const value = input.value.trim();
+      if (!value) return;
+
+      echoCommand(value);
+      input.value = "";
+
+      if (pendingAction) {
+        if (value.toLowerCase() === "y") {
+          triggerDownload(pendingAction.file);
+          printLine(`Downloading ${pendingAction.title}...`, "info");
+        } else if (value.toLowerCase() === "n") {
+          printLine("Download cancelled.");
+        } else {
+          printLine("Please enter y or n.", "error");
+          return;
+        }
+
+        pendingAction = null;
+        window.scrollTo(0, document.body.scrollHeight);
+        return;
+      }
+
+      if (value === "clear") {
+        clearTerminal();
+        window.scrollTo(0, document.body.scrollHeight);
+        return;
+      }
+
+      if (value === "projects") {
+        showProjects();
+        window.scrollTo(0, document.body.scrollHeight);
+        return;
+      }
+
+      if (projects[value]) {
+        const project = projects[value];
+        printLine(`Do you want to download "${project.title}"? (y/n)`, "info");
+        pendingAction = project;
+        window.scrollTo(0, document.body.scrollHeight);
+        return;
+      }
+
+      if (commands[value]) {
+        commands[value].forEach(line => printLine(line));
+      } else {
+        printLine(`Command not found: ${value}`, "error");
+        printLine(`Type 'help' to see available commands.`);
+      }
+
+      window.scrollTo(0, document.body.scrollHeight);
+    });
+  </script>
 </body>
 </html>
