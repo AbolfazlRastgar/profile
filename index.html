@@ -1,320 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abolfazl | My Profile</title>
+<meta charset="UTF-8">
+<title>Terminal</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --bg: #300a24;
-      --panel: #2b0b22;
-      --text: #eeeeec;
-      --green: #8ae234;
-      --blue: #729fcf;
-      --orange: #f57900;
-      --muted: #c7c7c7;
-      --red: #ef4444;
-    }
+<style>
+body {
+  margin: 0;
+  background: #300a24;
+  color: #eeeeec;
+  font-family: 'Ubuntu Mono', monospace;
+  padding: 20px;
+  font-size: 18px;
+}
 
-    * {
-      box-sizing: border-box;
-    }
+.line {
+  margin-bottom: 6px;
+}
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Ubuntu Mono', monospace;
-      min-height: 100vh;
-    }
+.prompt {
+  color: #8ae234;
+}
 
-    .window {
-      width: min(1100px, 96vw);
-      margin: 24px auto;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,.45);
-      border: 1px solid rgba(255,255,255,.08);
-    }
+.path {
+  color: #729fcf;
+}
 
-    .titlebar {
-      height: 36px;
-      background: #3c3b37;
-      display: flex;
-      align-items: center;
-      padding: 0 14px;
-      gap: 8px;
-    }
+input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font: inherit;
+  width: 70%;
+}
 
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
+.cursor::after {
+  content: "_";
+  animation: blink 1s infinite;
+}
 
-    .dot.red { background: #ff5f56; }
-    .dot.yellow { background: #ffbd2e; }
-    .dot.green { background: #27c93f; }
-
-    .title {
-      margin-left: 10px;
-      color: #ddd;
-      font-size: 14px;
-      opacity: 0.9;
-    }
-
-    .terminal {
-      min-height: calc(100vh - 100px);
-      padding: 22px;
-      background: linear-gradient(180deg, #300a24 0%, #2a0a20 100%);
-    }
-
-    .output-line,
-    .input-line {
-      white-space: pre-wrap;
-      word-break: break-word;
-      line-height: 1.65;
-      font-size: 22px;
-    }
-
-    .prompt {
-      color: var(--green);
-    }
-
-    .path {
-      color: var(--blue);
-    }
-
-    .symbol {
-      color: var(--text);
-    }
-
-    .welcome {
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .highlight {
-      color: var(--orange);
-    }
-
-    .cmd {
-      color: var(--text);
-    }
-
-    .input-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .input-row .left {
-      display: inline;
-    }
-
-    input {
-      flex: 1;
-      min-width: 220px;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: var(--text);
-      font: inherit;
-      caret-color: transparent;
-    }
-
-    .fake-caret {
-      display: inline-block;
-      width: 10px;
-      height: 22px;
-      background: var(--text);
-      margin-left: 2px;
-      animation: blink 1s step-end infinite;
-      vertical-align: middle;
-    }
-
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    .error {
-      color: var(--red);
-    }
-
-    .spacer {
-      height: 8px;
-    }
-
-    @media (max-width: 768px) {
-      .terminal {
-        padding: 16px;
-      }
-
-      .output-line,
-      .input-line {
-        font-size: 18px;
-      }
-
-      .fake-caret {
-        height: 18px;
-      }
-    }
-  </style>
+@keyframes blink {
+  50% { opacity: 0; }
+}
+</style>
 </head>
+
 <body>
-  <div class="window">
-    <div class="titlebar">
-      <span class="dot red"></span>
-      <span class="dot yellow"></span>
-      <span class="dot green"></span>
-      <span class="title">abolfazl@ubuntu: ~</span>
-    </div>
 
-    <div class="terminal" id="terminal">
-      <div id="intro"></div>
-      <div class="spacer"></div>
+<div id="terminal"></div>
 
-      <div class="input-line input-row">
-        <span class="left">
-          <span class="prompt">abolfazl@ubuntu</span>:<span class="path">~</span><span class="symbol">$</span>
-        </span>
-        <input id="commandInput" autocomplete="off" autofocus />
-        <span class="fake-caret"></span>
-      </div>
-    </div>
-  </div>
+<div class="line">
+  <span class="prompt">abolfazl@ubuntu</span>:<span class="path">~</span>$ 
+  <input id="input" autofocus class="cursor">
+</div>
 
-  <script>
-    const intro = document.getElementById("intro");
-    const terminal = document.getElementById("terminal");
-    const input = document.getElementById("commandInput");
+<script>
+const terminal = document.getElementById("terminal");
+const input = document.getElementById("input");
 
-    const introLines = [
-      "Welcome to Abolfazl Rastgar's terminal portfolio.",
-      "Role: Microsoft SQL Server Expert",
-      "Type 'help' to view available commands.",
-      "You can explore my background, projects, and contact information from here."
-    ];
+const intro = [
+  "Welcome to mt personal page",
+  "Role: Microsoft SQL Server Expert",
+  "Type 'help' to start"
+];
 
-    const commands = {
-      help: [
-        "Available commands:",
-        "  about      - short introduction",
-        "  role       - current professional position",
-        "  skills     - technical skills",
-        "  projects   - featured work",
-        "  contact    - contact info",
-        "  clear      - clear terminal"
-      ],
-      about: [
-        "Hi, I'm Abolfazl Rastgar.",
-        "I'm a Microsoft SQL Server Expert focused on database performance, optimization, and reliability."
-      ],
-      role: [
-        "Microsoft SQL Server Expert"
-      ],
-      skills: [
-        "SQL Server",
-        "Performance Tuning",
-        "Query Optimization",
-        "Indexing",
-        "High Availability",
-        "Backup & Recovery",
-        "T-SQL"
-      ],
-      projects: [
-        "Projects section will be added soon."
-      ],
-      contact: [
-        "Email: your-email@example.com",
-        "LinkedIn: linkedin.com/in/your-profile"
-      ]
-    };
+const commands = {
+  help: "about, role, skills, contact, clear",
+  about: "Abolfazl Rastgar - SQL Server Expert",
+  role: "Microsoft SQL Server Expert",
+  skills: "SQL Server | Performance Tuning | Indexing | T-SQL",
+  contact: "your@email.com"
+};
 
-    function createOutputLine(text, className = "output-line") {
-      const div = document.createElement("div");
-      div.className = className;
-      div.textContent = text;
-      return div;
+// تایپ اولیه
+async function typeIntro() {
+  for (let line of intro) {
+    let div = document.createElement("div");
+    div.className = "line";
+    terminal.appendChild(div);
+
+    for (let char of line) {
+      div.textContent += char;
+      await new Promise(r => setTimeout(r, 20));
+    }
+  }
+}
+
+typeIntro();
+
+// هندل command
+input.addEventListener("keydown", function(e) {
+  if (e.key === "Enter") {
+    const cmd = input.value.trim();
+
+    // نمایش دستور
+    let line = document.createElement("div");
+    line.className = "line";
+    line.innerHTML = `<span class="prompt">abolfazl@ubuntu</span>:<span class="path">~</span>$ ${cmd}`;
+    terminal.appendChild(line);
+
+    // جواب
+    let output = document.createElement("div");
+    output.className = "line";
+
+    if (cmd === "clear") {
+      terminal.innerHTML = "";
+    } else {
+      output.textContent = commands[cmd] || "command not found";
+      terminal.appendChild(output);
     }
 
-    function createCommandEcho(command) {
-      const div = document.createElement("div");
-      div.className = "output-line";
-      div.innerHTML = `<span class="prompt">abolfazl@ubuntu</span>:<span class="path">~</span><span class="symbol">$</span> <span class="cmd"></span>`;
-      div.querySelector(".cmd").textContent = command;
-      return div;
-    }
+    input.value = "";
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+});
+</script>
 
-    async function typeLine(text, speed = 28, className = "output-line") {
-      const div = document.createElement("div");
-      div.className = className;
-      intro.appendChild(div);
-
-      for (let i = 0; i < text.length; i++) {
-        div.textContent += text[i];
-        await new Promise(resolve => setTimeout(resolve, speed));
-      }
-    }
-
-    async function playIntro() {
-      input.disabled = true;
-      for (const line of introLines) {
-        await typeLine(line, 24, "output-line welcome");
-      }
-      input.disabled = false;
-      input.focus();
-    }
-
-    function printLines(lines, isError = false) {
-      lines.forEach(line => {
-        const output = createOutputLine(line, isError ? "output-line error" : "output-line");
-        terminal.insertBefore(output, terminal.lastElementChild);
-      });
-    }
-
-    function clearTerminal() {
-      intro.innerHTML = "";
-      const outputs = [...terminal.querySelectorAll(".output-line")];
-      outputs.forEach(el => {
-        if (!el.closest("#intro")) el.remove();
-      });
-    }
-
-    input.addEventListener("keydown", function (e) {
-      if (e.key !== "Enter") return;
-
-      const command = input.value.trim();
-      if (!command) return;
-
-      terminal.insertBefore(createCommandEcho(command), terminal.lastElementChild);
-
-      if (command === "clear") {
-        clearTerminal();
-        input.value = "";
-        window.scrollTo(0, document.body.scrollHeight);
-        return;
-      }
-
-      if (commands[command]) {
-        printLines(commands[command]);
-      } else {
-        printLines([`Command not found: ${command}`, `Type 'help' to see available commands.`], true);
-      }
-
-      input.value = "";
-      window.scrollTo(0, document.body.scrollHeight);
-    });
-
-    playIntro();
-  </script>
 </body>
 </html>
