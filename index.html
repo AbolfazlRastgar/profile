@@ -170,8 +170,8 @@
       ],
 
       contact: [
-        `Email: <a href="mailto:ablfzl.rstgr@gmail.com" class="link">ablfzl.rstgr@gmail.com</a>`,
-        `GitHub: <a href="https://github.com/AbolfazlRastgar" target="_blank" class="link">github.com/AbolfazlRastgar</a>`
+        "Email: ablfzl.rstgr@gmail.com",
+        "GitHub: https://github.com/AbolfazlRastgar"
       ]
     };
 
@@ -266,22 +266,22 @@
       }
     }
 
+    function showContact() {
+      printHTML(
+        `Email: <a class="link" href="mailto:ablfzl.rstgr@gmail.com">ablfzl.rstgr@gmail.com</a>`
+      );
+
+      printHTML(
+        `GitHub: <a class="link" href="https://github.com/AbolfazlRastgar" target="_blank" rel="noopener noreferrer">github.com/AbolfazlRastgar</a>`
+      );
+    }
+
     function scrollToBottom() {
       currentLine.scrollIntoView({ behavior: "smooth", block: "end" });
     }
 
     function clearOutput() {
       output.innerHTML = "";
-    }
-
-    function printCommandOutput(commandName) {
-      commands[commandName].forEach(line => {
-        if (line.includes("<a ")) {
-          printHTML(line);
-        } else {
-          printLine(line);
-        }
-      });
     }
 
     input.addEventListener("keydown", async function (e) {
@@ -331,8 +331,14 @@
         return;
       }
 
+      if (value === "contact") {
+        showContact();
+        scrollToBottom();
+        return;
+      }
+
       if (commands[value]) {
-        printCommandOutput(value);
+        commands[value].forEach(line => printLine(line));
       } else {
         printLine("command not found", "error");
       }
@@ -345,8 +351,10 @@
       scrollToBottom();
     });
 
-    document.addEventListener("click", () => {
-      input.focus();
+    document.addEventListener("click", (event) => {
+      if (event.target.tagName.toLowerCase() !== "a") {
+        input.focus();
+      }
     });
   </script>
 </body>
