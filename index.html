@@ -62,6 +62,15 @@
       color: #ff6b6b;
     }
 
+    .link {
+      color: #6fa8dc;
+      text-decoration: none;
+    }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+
     #terminal {
       min-height: 50vh;
     }
@@ -94,11 +103,12 @@
     }
   </style>
 </head>
+
 <body>
   <div id="intro">
     <div class="line">
       Welcome to my personal page. Here you can explore my academic and professional background,
-      and occasionally find some of my projects. Type <span class="info">'help'</span> to get started.
+      and find my public GitHub projects. Type <span class="info">'help'</span> to get started.
     </div>
   </div>
 
@@ -120,6 +130,8 @@
 
     let pendingAction = null;
 
+    const githubUsername = "AbolfazlRastgar";
+
     const commands = {
       help: [
         "Available commands:",
@@ -127,17 +139,28 @@
         "about      - Professional background",
         "education  - Academic history",
         "resume     - Download my resume",
-        "projects   - My projects repo",
+        "projects   - Show my public GitHub repositories",
         "contact    - Contact information",
         "clear      - Clear the terminal"
       ],
 
-      about: [
-        "I'm Abolfazl Rastgar, a Microsoft SQL Server Expert with 4+ years of experience",
-        "in SQL Server administration, performance tuning, ETL development, and reporting systems.",
-        "I have worked with large-scale database environments, HA/DR architecture, monitoring,",
-        "query optimization, and building reliable data pipelines. in my resume and projects repo you can find more details"
-      ],
+about: [
+  "I'm Abolfazl Rastgar, a database and data engineering practitioner focused on",
+  "building reliable data systems for real production environments.",
+  "",
+  "Over the past 4+ years, my work has centered around SQL Server Database Administration,",
+  "performance tuning, query optimization, database operations, and large-scale data environments.",
+  "",
+  "I've also worked with PostgreSQL — my second but very real database love — ClickHouse,",
+  "and Elasticsearch, which gives me a broader view of how different data systems behave,",
+  "scale, and fail.",
+  "",
+  "On the data engineering side, I work with ETL processes, data workflows, Kafka, Spark,",
+  "Python, SQL, and modern analytics engineering practices.",
+  "",
+  "",
+  "Type 'resume' to download my resume or 'projects' to explore my GitHub repositories."
+],
 
       education: [
         "M.Sc. in Computer Engineering",
@@ -147,7 +170,8 @@
       ],
 
       contact: [
-        "Email: ablfzl.rstgr@gmail.com"
+        "Email: ablfzl.rstgr@gmail.com",
+        "GitHub: https://github.com/AbolfazlRastgar"
       ]
     };
 
@@ -158,17 +182,17 @@
       }
     };
 
-    const projects = {
-      "sql-project": {
-        title: "SQL Optimization Case Study",
-        file: "./files/sql-project.pdf"
-      }
-    };
-
     function printLine(text, className = "") {
       const div = document.createElement("div");
       div.className = `line ${className}`.trim();
       div.textContent = text;
+      output.appendChild(div);
+    }
+
+    function printHTML(html, className = "") {
+      const div = document.createElement("div");
+      div.className = `line ${className}`.trim();
+      div.innerHTML = html;
       output.appendChild(div);
     }
 
@@ -189,12 +213,57 @@
       a.remove();
     }
 
-    function showProjects() {
-      printLine("Available projects:");
-      Object.keys(projects).forEach(key => {
-        printLine(`- ${key}`);
-      });
-      printLine("Type a project name to download it.");
+    async function showGithubRepos() {
+      printLine("Loading GitHub repositories...", "info");
+
+      const apiUrl = `https://api.github.com/users/${githubUsername}/repos?sort=updated&direction=desc`;
+
+      try {
+        const response = await fetch(apiUrl);
+
+        if (!response.ok) {
+          printLine("Could not load GitHub repositories.", "error");
+          return;
+        }
+
+        const repos = await response.json();
+
+        const filteredRepos = repos.filter(repo =>
+          repo.name.toLowerCase() !== "profile" && !repo.fork
+        );
+
+        if (!filteredRepos.length) {
+          printLine("No public repositories found.");
+          return;
+        }
+
+        printLine("");
+        printLine("My GitHub repositories:");
+        printLine("");
+
+        filteredRepos.forEach(repo => {
+          printLine(repo.name, "info");
+
+          if (repo.description) {
+            printLine(repo.description);
+          } else {
+            printLine("No description yet.");
+          }
+
+          printHTML(
+            `URL: <a class="link" href="${repo.html_url}" target="_blank">${repo.html_url}</a>`
+          );
+
+          if (repo.language) {
+            printLine(`Main language: ${repo.language}`);
+          }
+
+          printLine("");
+        });
+
+      } catch (error) {
+        printLine("Could not connect to GitHub API.", "error");
+      }
     }
 
     function scrollToBottom() {
@@ -205,20 +274,22 @@
       output.innerHTML = "";
     }
 
-    input.addEventListener("keydown", function (e) {
+    input.addEventListener("keydown", async function (e) {
       if (e.key !== "Enter") return;
 
-      const value = input.value.trim().toLowerCase();
+      const rawValue = input.value.trim();
+      const value = rawValue.toLowerCase();
+
       if (!value) return;
 
-      printCommandEcho(value);
+      printCommandEcho(rawValue);
       input.value = "";
 
       if (pendingAction) {
-        if (value.toLowerCase() === "y") {
+        if (value === "y") {
           triggerDownload(pendingAction.file);
           printLine(`Downloading "${pendingAction.title}"...`, "info");
-        } else if (value.toLowerCase() === "n") {
+        } else if (value === "n") {
           printLine("Cancelled.");
         } else {
           printLine("Please enter y or n.", "error");
@@ -245,14 +316,7 @@
       }
 
       if (value === "projects") {
-        showProjects();
-        scrollToBottom();
-        return;
-      }
-
-      if (projects[value]) {
-        pendingAction = projects[value];
-        printLine(`Download "${projects[value].title}"? (y/n)`, "info");
+        await showGithubRepos();
         scrollToBottom();
         return;
       }
