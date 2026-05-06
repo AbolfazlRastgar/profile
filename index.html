@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My personal page</title>
+  <title>Abolfazl Rastgar</title>
 
   <style>
     @font-face {
@@ -117,7 +117,7 @@
 
     <div id="currentLine" class="input-line">
       <span class="prompt-wrap">
-        <span class="prompt">abolfazl@linux</span>:<span class="path">~</span>$&nbsp;
+        <span class="prompt">abolfazl@localhost:~$</span>&nbsp;
       </span>
       <input id="commandInput" type="text" autocomplete="off" autofocus />
     </div>
@@ -144,23 +144,23 @@
         "clear      - Clear the terminal"
       ],
 
-about: [
-  "I'm Abolfazl Rastgar, a database and data engineering practitioner focused on",
-  "building reliable data systems for real production environments.",
-  "",
-  "Over the past 4+ years, my work has centered around SQL Server Database Administration,",
-  "performance tuning, query optimization, database operations, and large-scale data environments.",
-  "",
-  "I've also worked with PostgreSQL — my second but very real database love — ClickHouse,",
-  "and Elasticsearch, which gives me a broader view of how different data systems behave,",
-  "scale, and fail.",
-  "",
-  "On the data engineering side, I work with ETL processes, data workflows, Kafka, Spark,",
-  "Python, SQL, and modern analytics engineering practices.",
-  "",
-  "",
-  "Type 'resume' to download my resume or 'projects' to explore my GitHub repositories."
-],
+      about: [
+        "I'm Abolfazl Rastgar, a database and data engineering practitioner focused on",
+        "building reliable data systems for real production environments.",
+        "",
+        "Over the past 4+ years, my work has centered around SQL Server Database Administration,",
+        "performance tuning, query optimization, database operations, and large-scale data environments.",
+        "",
+        "I've also worked with PostgreSQL — my second but very real database love — ClickHouse,",
+        "and Elasticsearch, which gives me a broader view of how different data systems behave,",
+        "scale, and fail.",
+        "",
+        "On the data engineering side, I work with ETL processes, data workflows, Kafka, Spark,",
+        "Python, SQL, and modern analytics engineering practices.",
+        "",
+        "",
+        "Type 'resume' to download my resume or 'projects' to explore my GitHub repositories."
+      ],
 
       education: [
         "M.Sc. in Computer Engineering",
@@ -170,8 +170,8 @@ about: [
       ],
 
       contact: [
-        "Email: ablfzl.rstgr@gmail.com",
-        "GitHub: https://github.com/AbolfazlRastgar"
+        `Email: <a href="mailto:ablfzl.rstgr@gmail.com" class="link">ablfzl.rstgr@gmail.com</a>`,
+        `GitHub: <a href="https://github.com/AbolfazlRastgar" target="_blank" class="link">github.com/AbolfazlRastgar</a>`
       ]
     };
 
@@ -199,7 +199,7 @@ about: [
     function printCommandEcho(command) {
       const div = document.createElement("div");
       div.className = "line";
-      div.innerHTML = `<span class="prompt">abolfazl@linux</span>:<span class="path">~</span>$ <span class="echo-command"></span>`;
+      div.innerHTML = `<span class="prompt">abolfazl@localhost:~$</span> <span class="echo-command"></span>`;
       div.querySelector(".echo-command").textContent = command;
       output.appendChild(div);
     }
@@ -274,6 +274,16 @@ about: [
       output.innerHTML = "";
     }
 
+    function printCommandOutput(commandName) {
+      commands[commandName].forEach(line => {
+        if (line.includes("<a ")) {
+          printHTML(line);
+        } else {
+          printLine(line);
+        }
+      });
+    }
+
     input.addEventListener("keydown", async function (e) {
       if (e.key !== "Enter") return;
 
@@ -322,7 +332,7 @@ about: [
       }
 
       if (commands[value]) {
-        commands[value].forEach(line => printLine(line));
+        printCommandOutput(value);
       } else {
         printLine("command not found", "error");
       }
