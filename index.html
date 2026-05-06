@@ -4,358 +4,789 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Abolfazl Rastgar</title>
-
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet" />
   <style>
-    @font-face {
-      font-family: 'UbuntuMono';
-      src: url('./fonts/UbuntuMono-Regular.ttf') format('truetype');
-      font-weight: normal;
-      font-style: normal;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #050a14;
+      --border: rgba(255,255,255,0.09);
+      --accent: #5affd4;
+      --accent2: #7b6ff0;
+      --text: #e8eaf0;
+      --muted: #6a7080;
+      --card-bg: rgba(255,255,255,0.03);
     }
-
-    @font-face {
-      font-family: 'UbuntuMono';
-      src: url('./fonts/UbuntuMono-Bold.ttf') format('truetype');
-      font-weight: bold;
-      font-style: normal;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    html { scroll-behavior: smooth; }
     body {
-      margin: 0;
-      background: #000;
-      color: #eaeaea;
-      font-family: 'UbuntuMono', monospace;
-      font-size: 20px;
-      line-height: 1.5;
-      padding: 20px 24px 40px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% -10%, rgba(90,255,212,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 85% 110%, rgba(123,111,240,0.09) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 40% at 60% 50%, rgba(255,107,107,0.04) 0%, transparent 60%);
+      pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M60 0H0v1h60zM0 60h60v-1H0z' fill='rgba(255,255,255,0.015)'/%3E%3Cpath d='M0 0v60h1V0zM60 0v60h-1V0z' fill='rgba(255,255,255,0.015)'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+    main { position: relative; z-index: 1; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 2.5rem;
+      background: rgba(5,10,20,0.6);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
+      letter-spacing: -0.02em; color: var(--text); text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace; font-size: 0.78rem; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 8rem 2.5rem 4rem; max-width: 1100px; margin: 0 auto;
+    }
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center; width: 100%;
+    }
+    .hero-tag {
+      font-family: 'DM Mono', monospace; font-size: 0.75rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent);
+      display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp 0.7s 0.1s forwards;
+    }
+    .hero-tag::before { content: ''; width: 28px; height: 1px; background: var(--accent); display: inline-block; }
+    h1 {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(2.8rem, 5vw, 4.2rem); line-height: 1.08;
+      letter-spacing: -0.03em; margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+    }
+    h1 .line { display: block; }
+    h1 .highlight {
+      -webkit-text-fill-color: transparent;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      -webkit-background-clip: text; background-clip: text;
+    }
+    .hero-desc {
+      font-size: 1.05rem; color: var(--muted); max-width: 480px; margin-bottom: 2.5rem;
+      opacity: 0; animation: fadeUp 0.7s 0.3s forwards;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.7s 0.4s forwards;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.6rem; border-radius: 6px;
+      font-family: 'DM Mono', monospace; font-size: 0.82rem;
+      letter-spacing: 0.04em; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none;
+    }
+    .btn-primary { background: var(--accent); color: #050a14; font-weight: 400; }
+    .btn-primary:hover { background: #3ff0c0; transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    /* TERMINAL CARD */
+    .hero-visual { opacity: 0; animation: fadeIn 1s 0.5s forwards; }
+    .terminal-card {
+      background: rgba(10,16,30,0.8); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden; backdrop-filter: blur(10px);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(90,255,212,0.06);
+    }
+    .terminal-bar {
+      background: rgba(255,255,255,0.04); padding: 0.9rem 1.2rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .dot { width: 11px; height: 11px; border-radius: 50%; }
+    .dot-r { background: #ff5f57; } .dot-y { background: #febc2e; } .dot-g { background: #28c840; }
+    .terminal-title {
+      font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted);
+      margin-left: auto; margin-right: 1.5rem;
+    }
+    .terminal-body { padding: 1.5rem; font-family: 'DM Mono', monospace; font-size: 0.82rem; }
+    .t-line { margin-bottom: 0.4rem; line-height: 1.7; }
+    .t-prompt { color: var(--accent); }
+    .t-out { color: var(--muted); }
+    .t-key { color: var(--accent2); }
+    .t-val { color: #ffd06b; }
+    .t-cursor {
+      display: inline-block; width: 8px; height: 14px;
+      background: var(--accent); vertical-align: middle; margin-left: 2px;
+      animation: blink 1.1s step-end infinite;
     }
 
-    #intro {
-      border-bottom: 1px solid #1f1f1f;
-      padding-bottom: 14px;
-      margin-bottom: 14px;
+    /* SECTIONS */
+    section { max-width: 1100px; margin: 0 auto; padding: 6rem 2.5rem; }
+    .section-label {
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem;
+    }
+    .section-label::before { content: '//'; opacity: 0.5; }
+    h2 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing: -0.02em; margin-bottom: 3rem; line-height: 1.15;
     }
 
-    .line {
-      white-space: pre-wrap;
-      word-break: break-word;
-      margin-bottom: 4px;
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .about-text p { color: var(--muted); margin-bottom: 1.2rem; font-size: 1rem; }
+    .about-text p strong { color: var(--text); font-weight: 400; }
+    .stats-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
     }
-
-    .prompt {
-      color: #7CFC00;
+    .stat-item { background: var(--card-bg); padding: 1.5rem; }
+    .stat-num {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem;
+      color: var(--accent); letter-spacing: -0.03em; line-height: 1; margin-bottom: 0.3rem;
     }
+    .stat-label { font-size: 0.79rem; color: var(--muted); }
 
-    .path {
-      color: #6fa8dc;
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
+    .skill-group {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.75rem; transition: border-color 0.2s, transform 0.2s;
     }
-
-    .info {
-      color: #ffd966;
+    .skill-group:hover { border-color: rgba(90,255,212,0.25); transform: translateY(-4px); }
+    .skill-group-icon { font-size: 1.4rem; margin-bottom: 0.85rem; }
+    .skill-group-title {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 0.95rem; margin-bottom: 1rem; letter-spacing: -0.01em;
     }
-
-    .error {
-      color: #ff6b6b;
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      padding: 0.3rem 0.65rem; border-radius: 4px;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--muted);
     }
+    .tag-accent { border-color: rgba(90,255,212,0.3); color: var(--accent); background: rgba(90,255,212,0.06); }
+    .tag-purple { border-color: rgba(123,111,240,0.3); color: #9d95ff; background: rgba(123,111,240,0.06); }
+    .tag-orange { border-color: rgba(255,208,107,0.3); color: #ffd06b; background: rgba(255,208,107,0.06); }
 
-    .link {
-      color: #6fa8dc;
-      text-decoration: none;
+    /* DATABASES */
+    .db-section { margin-top: 3.5rem; }
+    .sub-label {
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+      margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;
     }
-
-    .link:hover {
-      text-decoration: underline;
+    .sub-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .db-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1rem; }
+    .db-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.25rem 1.4rem;
+      display: flex; flex-direction: column; gap: 0.4rem;
+      transition: transform 0.2s, border-color 0.2s;
+      position: relative; overflow: hidden;
     }
-
-    #terminal {
-      min-height: 50vh;
+    .db-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+    .db-card.expert::before { background: var(--accent); }
+    .db-card.proficient::before { background: var(--accent2); }
+    .db-card.growing::before { background: #ffd06b; }
+    .db-card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.15); }
+    .db-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; }
+    .db-type { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); }
+    .db-badge {
+      font-family: 'DM Mono', monospace; font-size: 0.68rem;
+      padding: 0.18rem 0.5rem; border-radius: 3px; align-self: flex-start; margin-top: 0.2rem;
     }
+    .db-card.expert .db-badge { color: var(--accent); background: rgba(90,255,212,0.08); }
+    .db-card.proficient .db-badge { color: #9d95ff; background: rgba(123,111,240,0.08); }
+    .db-card.growing .db-badge { color: #ffd06b; background: rgba(255,208,107,0.08); }
 
-    .input-line {
-      display: flex;
-      align-items: baseline;
-      white-space: nowrap;
+    /* EXPERIENCE */
+    .timeline { position: relative; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 6px; bottom: 6px;
+      width: 1px; background: var(--border);
     }
-
-    .prompt-wrap {
-      flex: 0 0 auto;
+    .timeline-item { padding-left: 2.5rem; padding-bottom: 3rem; position: relative; }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -4px; top: 6px;
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--accent); border: 2px solid var(--bg); box-shadow: 0 0 0 1px var(--accent);
     }
-
-    #commandInput {
-      flex: 1 1 auto;
-      min-width: 40px;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: #ffffff;
-      font: inherit;
-      padding: 0;
-      margin: 0;
-      caret-color: #ffffff;
+    .tl-date { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+    .tl-role { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; letter-spacing: -0.01em; margin-bottom: 0.2rem; }
+    .tl-place { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .tl-place a { color: var(--accent2); text-decoration: none; }
+    .tl-place a:hover { text-decoration: underline; }
+    .tl-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; max-width: 640px; }
+    .tl-bullets { list-style: none; margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.45rem; }
+    .tl-bullets li { font-size: 0.88rem; color: var(--muted); padding-left: 1.1rem; position: relative; line-height: 1.6; }
+    .tl-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.7rem; top: 0.22em; }
+    .tl-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+    .certs { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; padding-left: 2.5rem; }
+    .cert-item {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 0.75rem 1.1rem; font-size: 0.85rem;
     }
+    .cert-item .cert-label {
+      font-family: 'DM Mono', monospace; font-size: 0.68rem;
+      display: block; margin-bottom: 0.2rem;
+    }
+    .cert-item .cert-label.done { color: var(--accent); }
+    .cert-item .cert-label.wip { color: #ffd06b; }
 
-    .echo-command {
-      color: #ffffff;
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .project-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2rem;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      text-decoration: none; color: inherit; display: block;
+      position: relative; overflow: hidden;
+    }
+    .project-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .project-card:hover { border-color: rgba(90,255,212,0.2); transform: translateY(-5px); box-shadow: 0 24px 48px rgba(0,0,0,0.3); }
+    .project-card:hover::before { opacity: 1; }
+    .project-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+    .project-icon { font-size: 1.3rem; }
+    .project-ext { font-size: 0.85rem; color: var(--muted); opacity: 0; transition: opacity 0.2s; }
+    .project-card:hover .project-ext { opacity: 1; }
+    .project-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; margin-bottom: 0.6rem; }
+    .project-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.25rem; }
+    .project-meta { display: flex; align-items: center; gap: 1rem; font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); }
+    .project-stars { color: #ffd06b; }
+    .lang-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 3px; }
+    .projects-loading { display: flex; align-items: center; gap: 0.75rem; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 0.85rem; padding: 2rem 0; }
+    .spinner { width: 16px; height: 16px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; }
+
+    /* CONTACT */
+    .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .contact-text { font-size: 1rem; color: var(--muted); }
+    .contact-text p { margin-bottom: 1rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.1rem 1.4rem; background: var(--card-bg);
+      border: 1px solid var(--border); border-radius: 10px;
+      text-decoration: none; color: var(--text); transition: border-color 0.2s, transform 0.2s;
+    }
+    .contact-link:hover { border-color: rgba(90,255,212,0.3); transform: translateX(6px); }
+    .contact-link-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(90,255,212,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .contact-link-text strong { display: block; font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.9rem; }
+    .contact-link-text span { font-size: 0.8rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border); padding: 2rem 2.5rem;
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    footer p { font-size: 0.8rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+    .footer-accent { color: var(--accent); }
+    .divider { width: 100%; height: 1px; background: var(--border); max-width: 1100px; margin: 0 auto; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { gap: 1.2rem; }
+      .hero { padding: 7rem 1.25rem 3rem; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      section { padding: 4rem 1.25rem; }
+      .about-grid, .contact-wrapper { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
   </style>
 </head>
-
 <body>
-  <div id="intro">
-    <div class="line">
-      Welcome to my personal page. Here you can explore my academic and professional background,
-      and find my public GitHub projects. Type <span class="info">'help'</span> to get started.
-    </div>
-  </div>
 
-  <div id="terminal">
-    <div id="output"></div>
+  <nav>
+    <a class="nav-logo" href="#"><span>~</span>/abolfazl</a>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#experience">exp</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </nav>
 
-    <div id="currentLine" class="input-line">
-      <span class="prompt-wrap">
-        <span class="prompt">abolfazl@localhost:~$</span>&nbsp;
-      </span>
-      <input id="commandInput" type="text" autocomplete="off" autofocus />
+  <main>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-inner">
+        <div>
+          <p class="hero-tag">Open to opportunities</p>
+          <h1>
+            <span class="line">Abolfazl</span>
+            <span class="line highlight">Rastgar</span>
+          </h1>
+          <p class="hero-desc">
+            Data Engineer &amp; SQL databases specialist with 4+ years building large-scale data platforms, ETL pipelines, and high-availability database infrastructure for real production environments.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">View Projects ↓</a>
+            <a href="#contact" class="btn btn-outline">Get in Touch</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="terminal-card">
+            <div class="terminal-bar">
+              <span class="dot dot-r"></span>
+              <span class="dot dot-y"></span>
+              <span class="dot dot-g"></span>
+              <span class="terminal-title">abolfazl@localhost — bash</span>
+            </div>
+            <div class="terminal-body">
+              <div class="t-line"><span class="t-prompt">❯ </span><span>cat profile.json</span></div>
+              <div class="t-line t-out">{</div>
+              <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"name"</span>: <span class="t-val">"Abolfazl Rastgar"</span>,</span></div>
+              <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"role"</span>: <span class="t-val">"Database Specialist"</span>,</span></div>
+              <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"focus"</span>: <span class="t-val">"Data Engineer"</span>,</span></div>
+              <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"experience"</span>: <span class="t-val">"4+ years"</span>,</span></div>
+              <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"status"</span>: <span class="t-val">"open to work ✓"</span></span></div>
+              <div class="t-line t-out">}</div>
+              <div class="t-line" style="margin-top:0.8rem"><span class="t-prompt">❯ </span><span>ls stacks/</span></div>
+              <div class="t-line" style="color:#9d95ff; font-family:'DM Mono',monospace; font-size:0.82rem;">sql-server&nbsp;&nbsp;ssis&nbsp;&nbsp;grafana&nbsp;&nbsp;kafka/</div>
+              <div class="t-line" style="margin-top:0.8rem"><span class="t-prompt">❯ </span><span class="t-cursor"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-label">about me</div>
+      <h2>Background &amp; Focus</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>I'm <strong>Abolfazl Rastgar</strong>, a database and data engineering practitioner focused on building reliable data systems for real production environments.</p>
+          <p>Over the past <strong>4+ years</strong>, my work has centered around SQL Server Database Administration, performance tuning, query optimization, database operations, and large-scale data environments.</p>
+          <p>I've also worked with <strong>PostgreSQL</strong> — my second but very real database love — <strong>ClickHouse</strong>, and <strong>Elasticsearch</strong>, which gives me a broader view of how different data systems behave, scale, and fail.</p>
+          <p>On the data engineering side, I work with ETL processes, data workflows, <strong>Kafka</strong>, <strong>Spark</strong>, Python, SQL, and modern analytics engineering practices.</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-num">4+</div>
+            <div class="stat-label">Years in Production Data</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">50+</div>
+            <div class="stat-label">SQL Server Instances Managed</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">M.Sc.</div>
+            <div class="stat-label">Computer Engineering · IUST</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">TB+</div>
+            <div class="stat-label">Multi-Terabyte Environments</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-label">technical skills</div>
+      <h2>What I Work With</h2>
+      <div class="skills-grid">
+
+        <div class="skill-group">
+          <div class="skill-group-icon">📝</div>
+          <div class="skill-group-title">Languages</div>
+          <div class="skill-tags">
+            <span class="tag tag-accent">T-SQL</span>
+            <span class="tag tag-accent">Python</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Bash</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-icon">⚙️</div>
+          <div class="skill-group-title">Data Engineering</div>
+          <div class="skill-tags">
+            <span class="tag tag-accent">SSIS</span>
+            <span class="tag tag-accent">ETL / ELT Pipelines</span>
+            <span class="tag tag-accent">Apache Kafka</span>
+            <span class="tag tag-accent">Apache Spark</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">NumPy</span>
+            <span class="tag">Incremental Loads</span>
+            <span class="tag">Change Tracking</span>
+            <span class="tag">SQL Agent</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-icon">📊</div>
+          <div class="skill-group-title">Observability & BI</div>
+          <div class="skill-tags">
+            <span class="tag tag-accent">Grafana</span>
+            <span class="tag tag-accent">Prometheus</span>
+            <span class="tag tag-accent">Zabbix</span>
+            <span class="tag">Redgate SQL Monitor</span>
+            <span class="tag tag-purple">Power BI</span>
+            <span class="tag">Metabase</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-icon">🎯</div>
+          <div class="skill-group-title">Performance & Tuning</div>
+          <div class="skill-tags">
+            <span class="tag tag-orange">Query Optimization</span>
+            <span class="tag tag-orange">Partitioning</span>
+            <span class="tag tag-orange">FILESTREAM</span>
+            <span class="tag tag-orange">T-SQL query optimizer</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-icon">🖥️</div>
+          <div class="skill-group-title">Infrastructure & HA</div>
+          <div class="skill-tags">
+            <span class="tag tag-accent">AlwaysOn AG</span>
+            <span class="tag tag-accent">WSFC</span>
+            <span class="tag tag-accent">HA / DR</span>
+            <span class="tag">Backup Strategy</span>
+            <span class="tag">Linux (LPIC-1)</span>
+            <span class="tag">Windows Server</span>
+            <span class="tag">Docker</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-icon">🔬</div>
+          <div class="skill-group-title">Research Interests</div>
+          <div class="skill-tags">
+            <span class="tag tag-purple">Smart Grids</span>
+            <span class="tag tag-purple">Cybersecurity</span>
+            <span class="tag tag-purple">Artificial Intelligence</span>
+            <span class="tag tag-purple">Machine Learning</span>
+            <span class="tag tag-purple">Scikit-Learn</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- DATABASES -->
+      <div class="db-section">
+        <div class="sub-label">databases</div>
+        <div class="db-grid">
+          <div class="db-card expert">
+            <div class="db-name">SQL Server</div>
+            <div class="db-type">RDBMS · Microsoft</div>
+            <div class="db-badge">Expert</div>
+          </div>
+          <div class="db-card proficient">
+            <div class="db-name">PostgreSQL</div>
+            <div class="db-type">RDBMS · Open Source</div>
+            <div class="db-badge">Proficient</div>
+          </div>
+          <div class="db-card proficient">
+            <div class="db-name">ClickHouse</div>
+            <div class="db-type">OLAP · Columnar</div>
+            <div class="db-badge">mid level</div>
+          </div>
+          <div class="db-card proficient">
+            <div class="db-name">Elasticsearch</div>
+            <div class="db-type">Search & Analytics</div>
+            <div class="db-badge">Learning</div>
+          </div>
+          <div class="db-card growing">
+            <div class="db-name">Redis</div>
+            <div class="db-type">In-Memory · Cache</div>
+            <div class="db-badge">Learning</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-label">experience</div>
+      <h2>Where I've Been</h2>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="tl-date">Feb 2022 — Present</div>
+          <div class="tl-role">SQL Server DBA &amp; Data Engineer</div>
+          <div class="tl-place">City Innovation &amp; Development · <a href="https://shahrdi.com" target="_blank">shahrdi.com</a> — Tehran, Iran</div>
+          <ul class="tl-bullets">
+            <li>Managed 50+ SQL Server OLTP/OLAP environments across multi-TB banking systems, ensuring stability, availability, and production SLA compliance.</li>
+            <li>Designed and operated high-availability database architectures, including multi-site AlwaysOn Availability Groups for critical banking workloads.</li>
+            <li>Led database reliability and disaster recovery initiatives, reducing recovery time objectives through structured backup, retention, encryption, and failover strategies.</li>
+            <li>Improved performance and storage efficiency in large-scale production databases by analyzing query behavior, execution bottlenecks, indexing strategy, data growth patterns, and operational workloads.</li>
+            <li>Designed data pipelines for a centralized banking reporting platform, enabling consistent data delivery from operational systems to analytical and reporting layers.</li>
+            <li>Implemented real-time and near-real-time data integration flows using Kafka, Debezium, and Spark to move operational database changes into a Lakehouse environment.</li>
+            <li>IBuilt purpose-driven data serving layers for different user groups, including self-service analytics for business teams and high-volume operational analytics for technical and operations teams.</li>
+            <li>Developed cross-system reporting and data integration processes to support unified dashboards, operational visibility, and faster decision-making across banking services.</li>
+            <li>Established production monitoring and alerting practices across database and data platforms, covering availability, performance degradation, workload anomalies, storage growth, failover events, and job failures.</li>
+
+          </ul>
+          <div class="tl-tags">
+            <span class="tag tag-accent">SQL Server</span>
+            <span class="tag tag-accent">Data enginnering</span>
+            <span class="tag tag-accent">AlwaysOn AG</span>
+            <span class="tag tag-accent">Postgres</span>
+            <span class="tag">Grafana</span>
+            <span class="tag">Metabase</span>
+            <span class="tag">Prometheus</span>
+            <span class="tag">T-SQL</span>
+            <span class="tag">Zabbix</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="tl-date">March 2021 — Feb 2022</div>
+          <div class="tl-role">Technical Support &amp; SQL Optimization</div>
+          <div class="tl-place">Tirajeh Rayaneh Tehran · <a href="https://trt-co.ir" target="_blank">trt-co.ir</a> — Tehran, Iran</div>
+          <ul class="tl-bullets">
+            <li>Supported the "Shafa" Windows and web application in critical hospital environments including Baqiyatallah.</li>
+            <li>Identified slow queries using SQL Server Profiler and redesigned indexes from execution plan analysis.</li>
+            <li>Diagnosed application-level bugs in large production databases through Profiler trace sessions.</li>
+            <li>Designed and executed migration plans with minimum downtime for production workloads.</li>
+          </ul>
+          <div class="tl-tags">
+            <span class="tag tag-accent">T-SQL</span>
+            <span class="tag">SQL Server Profiler</span>
+            <span class="tag">Execution Plans</span>
+            <span class="tag">Index Redesign</span>
+            <span class="tag">Migration Planning</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="tl-date">Sep 2020 — Dec 2022</div>
+          <div class="tl-role">M.Sc. Computer Engineering</div>
+          <div class="tl-place">Iran University of Science and Technology (IUST) — Tehran, Iran</div>
+          <div class="tl-desc">Graduate studies in Computer Engineering with research spanning smart grids, cybersecurity, artificial intelligence, and machine learning systems.</div>
+          <div class="tl-tags">
+            <span class="tag tag-purple">Smart Grids</span>
+            <span class="tag tag-purple">Machine Learning</span>
+            <span class="tag tag-purple">Cybersecurity</span>
+            <span class="tag tag-purple">AI</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="sub-label" style="margin-top:0.5rem; padding-left:2.5rem;">certifications</div>
+      <div class="certs">
+        <div class="cert-item">
+          <span class="cert-label done">CERTIFIED</span>
+          SQL Server Database Administrator · Farata az Danesh Academy
+        </div>
+        <div class="cert-item">
+          <span class="cert-label done">CERTIFIED</span>
+          SQL Server Performance Tuning · Farata az Danesh Academy
+        </div>
+        <div class="cert-item" style="opacity:0.75;">
+          <span class="cert-label wip">IN PROGRESS</span>
+          Linux LPIC-1
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-label">projects</div>
+      <h2>Things I've Built</h2>
+      <div id="projects-container">
+        <div class="projects-loading">
+          <div class="spinner"></div>
+          <span>Fetching repositories from GitHub...</span>
+        </div>
+      </div>
+      <p style="margin-top:2rem">
+        <a href="https://github.com/abolfazlrastgar" target="_blank" class="btn btn-outline" style="display:inline-flex">
+          View all on GitHub →
+        </a>
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-label">contact</div>
+      <h2>Let's Connect</h2>
+      <div class="contact-wrapper">
+        <div class="contact-text">
+          <p>I'm open to data engineering roles, database consulting, and interesting conversations about large-scale data systems, infrastructure, and performance engineering.</p>
+          <p>Feel free to reach out — I'll get back to you.</p>
+        </div>
+        <div class="contact-links">
+          <a href="https://github.com/abolfazlrastgar" target="_blank" class="contact-link">
+            <div class="contact-link-icon">⌥</div>
+            <div class="contact-link-text">
+              <strong>GitHub</strong>
+              <span>github.com/abolfazlrastgar</span>
+            </div>
+          </a>
+          <a href="mailto:ablfzl.rstgr@gmail.com" class="contact-link">
+            <div class="contact-link-icon">@</div>
+            <div class="contact-link-text">
+              <strong>Email</strong>
+              <span>ablfzl.rstgr@gmail.com</span>
+            </div>
+          </a>
+          <a href="https://abolfazlrastgar.github.io/profile/" target="_blank" class="contact-link">
+            <div class="contact-link-icon">$</div>
+            <div class="contact-link-text">
+              <strong>Terminal Profile</strong>
+              <span>abolfazlrastgar.github.io/profile</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2025 <span class="footer-accent">Abolfazl Rastgar</span></p>
+    <p>Built with <span class="footer-accent">HTML / CSS / JS</span> · Hosted on GitHub Pages</p>
+  </footer>
 
   <script>
-    const output = document.getElementById("output");
-    const input = document.getElementById("commandInput");
-    const currentLine = document.getElementById("currentLine");
-
-    let pendingAction = null;
-
-    const githubUsername = "AbolfazlRastgar";
-
-    const commands = {
-      help: [
-        "Available commands:",
-        "",
-        "about      - Professional background",
-        "education  - Academic history",
-        "resume     - Download my resume",
-        "projects   - Show my public GitHub repositories",
-        "contact    - Contact information",
-        "clear      - Clear the terminal"
-      ],
-
-      about: [
-        "I'm Abolfazl Rastgar, a database and data engineering practitioner focused on",
-        "building reliable data systems for real production environments.",
-        "",
-        "Over the past 4+ years, my work has centered around SQL Server Database Administration,",
-        "performance tuning, query optimization, database operations, and large-scale data environments.",
-        "",
-        "I've also worked with PostgreSQL — my second but very real database love — ClickHouse,",
-        "and Elasticsearch, which gives me a broader view of how different data systems behave,",
-        "scale, and fail.",
-        "",
-        "On the data engineering side, I work with ETL processes, data workflows, Kafka, Spark,",
-        "Python, SQL, and modern analytics engineering practices.",
-        "",
-        "",
-        "Type 'resume' to download my resume or 'projects' to explore my GitHub repositories."
-      ],
-
-      education: [
-        "M.Sc. in Computer Engineering",
-        "Iran University of Science and Technology (IUST), Tehran, Iran",
-        "Sep 2020 - Dec 2022",
-        "Ranked 187 among ~90,000 participants in the national entrance exam"
-      ],
-
-      contact: [
-        "Email: ablfzl.rstgr@gmail.com",
-        "GitHub: https://github.com/AbolfazlRastgar"
-      ]
+    const langColors = {
+      Python:'#3572A5', JavaScript:'#f1e05a', TypeScript:'#2b7489',
+      SQL:'#e38c00', 'Jupyter Notebook':'#DA5B0B', Shell:'#89e051',
+      HTML:'#e34c26', CSS:'#563d7c', C:'#555555', 'C++':'#f34b7d',
+      Java:'#b07219', Go:'#00ADD8', Rust:'#dea584', PowerShell:'#012456',
+      'PLpgSQL':'#336790', TSQL:'#e38c00'
     };
 
-    const downloads = {
-      resume: {
-        title: "Abolfazl Rastgar Resume",
-        file: "./files/abolfazl-rastgar-resume.pdf"
-      }
-    };
-
-    function printLine(text, className = "") {
-      const div = document.createElement("div");
-      div.className = `line ${className}`.trim();
-      div.textContent = text;
-      output.appendChild(div);
+    function repoIcon(name, desc) {
+      const s = (name + ' ' + (desc||'')).toLowerCase();
+      if (s.includes('sql') || s.includes('database') || s.includes('db')) return '🗄️';
+      if (s.includes('etl') || s.includes('pipeline')) return '⚙️';
+      if (s.includes('monitor') || s.includes('grafana') || s.includes('metric')) return '📊';
+      if (s.includes('kafka') || s.includes('stream')) return '🌊';
+      if (s.includes('spark') || s.includes('hadoop')) return '⚡';
+      if (s.includes('ml') || s.includes('machine') || s.includes('learn')) return '🤖';
+      if (s.includes('terminal') || s.includes('cli') || s.includes('profile')) return '🖥️';
+      if (s.includes('python') || s.includes('script')) return '🐍';
+      if (s.includes('web') || s.includes('html')) return '🌐';
+      return '📦';
     }
 
-    function printHTML(html, className = "") {
-      const div = document.createElement("div");
-      div.className = `line ${className}`.trim();
-      div.innerHTML = html;
-      output.appendChild(div);
-    }
-
-    function printCommandEcho(command) {
-      const div = document.createElement("div");
-      div.className = "line";
-      div.innerHTML = `<span class="prompt">abolfazl@localhost:~$</span> <span class="echo-command"></span>`;
-      div.querySelector(".echo-command").textContent = command;
-      output.appendChild(div);
-    }
-
-    function triggerDownload(path) {
-      const a = document.createElement("a");
-      a.href = path;
-      a.download = "";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    }
-
-    async function showGithubRepos() {
-      printLine("Loading GitHub repositories...", "info");
-
-      const apiUrl = `https://api.github.com/users/${githubUsername}/repos?sort=updated&direction=desc`;
-
+    async function loadProjects() {
+      const container = document.getElementById('projects-container');
       try {
-        const response = await fetch(apiUrl);
+        const res = await fetch('https://api.github.com/users/abolfazlrastgar/repos?sort=updated&per_page=30');
+        if (!res.ok) throw new Error('API error');
+        const repos = await res.json();
 
-        if (!response.ok) {
-          printLine("Could not load GitHub repositories.", "error");
-          return;
-        }
-
-        const repos = await response.json();
-
-        const filteredRepos = repos.filter(repo =>
-          repo.name.toLowerCase() !== "profile" && !repo.fork
+        const filtered = repos.filter(r =>
+          !r.fork &&
+          r.name.toLowerCase() !== 'profile' &&
+          !r.name.toLowerCase().includes('abolfazlrastgar.github.io')
         );
 
-        if (!filteredRepos.length) {
-          printLine("No public repositories found.");
+        if (filtered.length === 0) {
+          container.innerHTML = '<p style="color:var(--muted);font-family:\'DM Mono\',monospace;font-size:0.85rem;">No public repositories found — check back soon.</p>';
           return;
         }
 
-        printLine("");
-        printLine("My GitHub repositories:");
-        printLine("");
+        const grid = document.createElement('div');
+        grid.className = 'projects-grid';
 
-        filteredRepos.forEach(repo => {
-          printLine(repo.name, "info");
-
-          if (repo.description) {
-            printLine(repo.description);
-          } else {
-            printLine("No description yet.");
-          }
-
-          printHTML(
-            `URL: <a class="link" href="${repo.html_url}" target="_blank">${repo.html_url}</a>`
-          );
-
-          if (repo.language) {
-            printLine(`Main language: ${repo.language}`);
-          }
-
-          printLine("");
+        filtered.slice(0, 9).forEach(repo => {
+          const color = langColors[repo.language] || '#5affd4';
+          const icon = repoIcon(repo.name, repo.description);
+          const desc = repo.description || 'No description provided.';
+          const card = document.createElement('a');
+          card.href = repo.html_url;
+          card.target = '_blank';
+          card.className = 'project-card';
+          card.innerHTML = `
+            <div class="project-card-header">
+              <span class="project-icon">${icon}</span>
+              <span class="project-ext">↗</span>
+            </div>
+            <div class="project-name">${repo.name}</div>
+            <div class="project-desc">${desc}</div>
+            <div class="project-meta">
+              ${repo.language ? `<span><span class="lang-dot" style="background:${color}"></span>${repo.language}</span>` : ''}
+              ${repo.stargazers_count > 0 ? `<span class="project-stars">★ ${repo.stargazers_count}</span>` : ''}
+              ${repo.forks_count > 0 ? `<span>⑂ ${repo.forks_count}</span>` : ''}
+            </div>
+          `;
+          grid.appendChild(card);
         });
 
-      } catch (error) {
-        printLine("Could not connect to GitHub API.", "error");
+        container.innerHTML = '';
+        container.appendChild(grid);
+
+      } catch(e) {
+        container.innerHTML = `
+          <div class="projects-grid">
+            <a href="https://abolfazlrastgar.github.io/profile/" target="_blank" class="project-card">
+              <div class="project-card-header"><span class="project-icon">🖥️</span><span class="project-ext">↗</span></div>
+              <div class="project-name">profile</div>
+              <div class="project-desc">Interactive Linux-terminal-style personal page. Type commands to explore profile info, projects, and more.</div>
+              <div class="project-meta"><span><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span></div>
+            </a>
+          </div>
+          <p style="margin-top:1rem;font-size:0.78rem;color:var(--muted);font-family:'DM Mono',monospace;">// GitHub API unavailable — showing fallback</p>
+        `;
       }
     }
 
-    function showContact() {
-      printHTML(
-        `Email: <a class="link" href="mailto:ablfzl.rstgr@gmail.com">ablfzl.rstgr@gmail.com</a>`
-      );
-
-      printHTML(
-        `GitHub: <a class="link" href="https://github.com/AbolfazlRastgar" target="_blank" rel="noopener noreferrer">github.com/AbolfazlRastgar</a>`
-      );
-    }
-
-    function scrollToBottom() {
-      currentLine.scrollIntoView({ behavior: "smooth", block: "end" });
-    }
-
-    function clearOutput() {
-      output.innerHTML = "";
-    }
-
-    input.addEventListener("keydown", async function (e) {
-      if (e.key !== "Enter") return;
-
-      const rawValue = input.value.trim();
-      const value = rawValue.toLowerCase();
-
-      if (!value) return;
-
-      printCommandEcho(rawValue);
-      input.value = "";
-
-      if (pendingAction) {
-        if (value === "y") {
-          triggerDownload(pendingAction.file);
-          printLine(`Downloading "${pendingAction.title}"...`, "info");
-        } else if (value === "n") {
-          printLine("Cancelled.");
-        } else {
-          printLine("Please enter y or n.", "error");
-          scrollToBottom();
-          return;
-        }
-
-        pendingAction = null;
-        scrollToBottom();
-        return;
-      }
-
-      if (value === "clear") {
-        clearOutput();
-        scrollToBottom();
-        return;
-      }
-
-      if (value === "resume") {
-        pendingAction = downloads.resume;
-        printLine(`Download "${downloads.resume.title}"? (y/n)`, "info");
-        scrollToBottom();
-        return;
-      }
-
-      if (value === "projects") {
-        await showGithubRepos();
-        scrollToBottom();
-        return;
-      }
-
-      if (value === "contact") {
-        showContact();
-        scrollToBottom();
-        return;
-      }
-
-      if (commands[value]) {
-        commands[value].forEach(line => printLine(line));
-      } else {
-        printLine("command not found", "error");
-      }
-
-      scrollToBottom();
-    });
-
-    window.addEventListener("load", () => {
-      input.focus();
-      scrollToBottom();
-    });
-
-    document.addEventListener("click", (event) => {
-      if (event.target.tagName.toLowerCase() !== "a") {
-        input.focus();
-      }
-    });
+    loadProjects();
   </script>
+
 </body>
 </html>
