@@ -777,7 +777,6 @@
             top: 0.22em;
         }
         /* CERTS */
-        /* CERTS */
         
         .certs {
             display: grid;
@@ -915,6 +914,125 @@
             color: var(--accent);
             font-weight: 400;
         }
+
+        /* ── CV DOWNLOAD SECTION ── */
+
+        .cv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .cv-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 28px 24px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-decoration: none;
+            color: inherit;
+            transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cv-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .cv-card:hover {
+            border-color: rgba(90, 255, 212, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .cv-card:hover::before {
+            opacity: 0.04;
+        }
+
+        .cv-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: rgba(90, 255, 212, 0.08);
+            border: 1px solid rgba(90, 255, 212, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cv-card-body {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cv-card-type {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+
+        .cv-card-name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 0.3rem;
+            letter-spacing: -0.01em;
+        }
+
+        .cv-card-desc {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--muted);
+        }
+
+        .cv-card-arrow {
+            font-size: 1.1rem;
+            color: var(--muted);
+            transition: color 0.2s, transform 0.2s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cv-card:hover .cv-card-arrow {
+            color: var(--accent);
+            transform: translateY(3px);
+        }
+
+        .cv-hint {
+            margin-top: 1.5rem;
+            padding: 0.85rem 1.1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            overflow-x: auto;
+        }
+
+        .cv-hint .prompt { color: var(--accent); }
+        .cv-hint .cmd    { color: var(--text); opacity: 0.7; white-space: nowrap; }
+
         /* GITHUB PROJECT CARDS */
         
         .projects-grid {
@@ -1223,6 +1341,7 @@
             <li><a href="#education">education</a></li>
             <li><a href="#experience">exp</a></li>
             <li><a href="#ielts">ielts</a></li>
+            <li><a href="#cv">cv</a></li>
             <li><a href="#github">github</a></li>
             <li><a href="#contact">contact</a></li>
         </ul>
@@ -1244,16 +1363,11 @@
                         <div class="terminal-body">
                             <div class="t-line"><span class="t-prompt">❯ </span><span>cat profile.json</span></div>
                             <div class="t-line t-out">{</div>
-                            <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"name"</span>: <span class="t-val">"Abolfazl Rastgar"</span>,</span>
-                            </div>
-                            <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"role"</span>: <span class="t-val">"Database Specialist"</span>,</span>
-                            </div>
-                            <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"focus"</span>: <span class="t-val">"Data Engineering"</span>,</span>
-                            </div>
-                            <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"experience"</span>: <span class="t-val">"4+ years"</span>,</span>
-                            </div>
-                            <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"status"</span>: <span class="t-val">"open to work ✓"</span></span>
-                            </div>
+                            <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"name"</span>: <span class="t-val">"Abolfazl Rastgar"</span>,</span></div>
+                            <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"role"</span>: <span class="t-val">"Database Specialist"</span>,</span></div>
+                            <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"focus"</span>: <span class="t-val">"Data Engineering"</span>,</span></div>
+                            <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"experience"</span>: <span class="t-val">"4+ years"</span>,</span></div>
+                            <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"status"</span>: <span class="t-val">"open to work ✓"</span></span></div>
                             <div class="t-line t-out">}</div>
                             <div class="t-line" style="margin-top:0.8rem"><span class="t-prompt">❯ </span><span>ls sections/</span></div>
                             <div class="t-line" style="color:#9d95ff; font-family:'DM Mono',monospace; font-size:0.82rem;">about/&nbsp;&nbsp;skills/&nbsp;&nbsp;projects/&nbsp;&nbsp;education/&nbsp;&nbsp;experience/&nbsp;&nbsp;ielts/&nbsp;&nbsp;github/&nbsp;&nbsp;contact/</div>
@@ -1272,8 +1386,7 @@
                 <div class="about-text">
                     <p>I'm <strong>Abolfazl Rastgar</strong>, a database and data engineering practitioner focused on building reliable data systems for real production environments.</p>
                     <p>Over the past <strong>4+ years</strong>, my work has centered around SQL Server Database Administration, performance tuning, query optimization, database operations, and large-scale data environments.</p>
-                    <p>I've also worked with <strong>PostgreSQL</strong> — my second but very real database love — <strong>ClickHouse</strong>, and <strong>Elasticsearch</strong>, which gives me a broader view of how different data systems behave, scale,
-                        and fail.</p>
+                    <p>I've also worked with <strong>PostgreSQL</strong> — my second but very real database love — <strong>ClickHouse</strong>, and <strong>Elasticsearch</strong>, which gives me a broader view of how different data systems behave, scale, and fail.</p>
                     <p>On the data engineering side, I work with ETL processes, data workflows, <strong>Kafka</strong>, <strong>Spark</strong>, Python, SQL, and modern analytics engineering practices.</p>
                 </div>
                 <div class="stats-grid">
@@ -1311,8 +1424,7 @@
                 <div class="skill-group">
                     <div class="skill-group-icon">⚙️</div>
                     <div class="skill-group-title">Data Engineering</div>
-                    <div class="skill-tags"><span class="tag tag-accent">SSIS</span><span class="tag tag-accent">ETL / ELT Pipelines</span><span class="tag tag-accent">Apache Kafka</span><span class="tag tag-accent">Apache Spark</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
-                        <span class="tag">Incremental Loads</span><span class="tag">Change Tracking</span><span class="tag">SQL Agent</span></div>
+                    <div class="skill-tags"><span class="tag tag-accent">SSIS</span><span class="tag tag-accent">ETL / ELT Pipelines</span><span class="tag tag-accent">Apache Kafka</span><span class="tag tag-accent">Apache Spark</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Incremental Loads</span><span class="tag">Change Tracking</span><span class="tag">SQL Agent</span></div>
                 </div>
                 <div class="skill-group">
                     <div class="skill-group-icon">📊</div>
@@ -1327,15 +1439,12 @@
                 <div class="skill-group">
                     <div class="skill-group-icon">🖥️</div>
                     <div class="skill-group-title">Infrastructure &amp; HA</div>
-                    <div class="skill-tags"><span class="tag tag-accent">AlwaysOn AG</span><span class="tag tag-accent">WSFC</span><span class="tag tag-accent">HA / DR</span><span class="tag">Backup Strategy</span><span class="tag">Linux (LPIC-1)</span><span class="tag">Windows Server</span>
-                        <span class="tag">Docker</span>
-                    </div>
+                    <div class="skill-tags"><span class="tag tag-accent">AlwaysOn AG</span><span class="tag tag-accent">WSFC</span><span class="tag tag-accent">HA / DR</span><span class="tag">Backup Strategy</span><span class="tag">Linux (LPIC-1)</span><span class="tag">Windows Server</span><span class="tag">Docker</span></div>
                 </div>
                 <div class="skill-group">
                     <div class="skill-group-icon">🔬</div>
                     <div class="skill-group-title">Research &amp; Algorithms</div>
-                    <div class="skill-tags"><span class="tag tag-purple">Smart Grids</span><span class="tag tag-purple">Cybersecurity</span><span class="tag tag-purple">Artificial Intelligence</span><span class="tag tag-purple">Machine Learning</span><span class="tag tag-purple">Scikit-Learn</span>
-                        <span class="tag tag-purple">Random Forest</span><span class="tag tag-purple">Ant Colony Optimization</span></div>
+                    <div class="skill-tags"><span class="tag tag-purple">Smart Grids</span><span class="tag tag-purple">Cybersecurity</span><span class="tag tag-purple">Artificial Intelligence</span><span class="tag tag-purple">Machine Learning</span><span class="tag tag-purple">Scikit-Learn</span><span class="tag tag-purple">Random Forest</span><span class="tag tag-purple">Ant Colony Optimization</span></div>
                 </div>
             </div>
             <div class="db-section">
@@ -1429,12 +1538,10 @@
                     <div class="tl-tags"><span class="tag tag-purple">Computer Engineering</span><span class="tag tag-purple">Network Security</span><span class="tag tag-purple">Machine Learning</span><span class="tag">IUST</span></div>
                 </div>
                 <div class="education-card">
-                    <div class="edu-kicker">master’s thesis · 2023</div>
+                    <div class="edu-kicker">master's thesis · 2023</div>
                     <div class="edu-degree">AI-Based Intrusion Detection in Smart Grids</div>
                     <div class="edu-meta">Random Forest · Cross-Validation · NSL-KDD · CICIDS2018</div>
-                    <p class="edu-detail">Designed an anomaly-based intrusion detection model for smart-grid environments. The main idea was improving attack classification reliability by combining Random Forest with cross-validation and evaluating the model on benchmark IDS
-                        datasets.
-                    </p>
+                    <p class="edu-detail">Designed an anomaly-based intrusion detection model for smart-grid environments. The main idea was improving attack classification reliability by combining Random Forest with cross-validation and evaluating the model on benchmark IDS datasets.</p>
                     <ul class="edu-list">
                         <li><strong>Tools:</strong> Python, Scikit-Learn, IDS datasets, evaluation metrics.</li>
                         <li><strong>Focus:</strong> DoS, DDoS, Probe, R2L, U2R, and malicious traffic classification.</li>
@@ -1443,7 +1550,7 @@
                     <div class="tl-tags"><span class="tag tag-purple">IDS</span><span class="tag tag-purple">Random Forest</span><span class="tag">Python</span><span class="tag">Smart Grid</span></div>
                 </div>
                 <div class="education-card">
-                    <div class="edu-kicker">master’s seminar · 2020–2022</div>
+                    <div class="edu-kicker">master's seminar · 2020–2022</div>
                     <div class="edu-degree">Security Challenges of TCP/IP-Based Smart Grids</div>
                     <div class="edu-meta">TCP/IP Security · CIA Model · Smart Grid Communication</div>
                     <p class="edu-detail">Reviewed security requirements and attack surfaces in TCP/IP-based smart-grid communication. The work connected smart-grid architecture with practical cybersecurity risks in critical infrastructure.</p>
@@ -1455,7 +1562,7 @@
                     <div class="tl-tags"><span class="tag tag-purple">TCP/IP</span><span class="tag tag-purple">Cybersecurity</span><span class="tag">CIA Model</span><span class="tag">Smart Grid</span></div>
                 </div>
                 <div class="education-card featured">
-                    <div class="edu-kicker">bachelor’s thesis · 2017</div>
+                    <div class="edu-kicker">bachelor's thesis · 2017</div>
                     <div class="edu-degree">Shortest Path Search Using Ant Colony Optimization</div>
                     <div class="edu-meta">Graph Optimization · Swarm Intelligence · MATLAB</div>
                     <p class="edu-detail">Modeled the shortest path problem using Ant Colony Optimization. The work introduced algorithmic modeling, metaheuristic search, and simulation-based optimization.</p>
@@ -1490,8 +1597,7 @@
                         <li>Developed cross-system reporting and data integration processes to support unified dashboards, operational visibility, and faster decision-making across banking services.</li>
                         <li>Established production monitoring and alerting practices across database and data platforms, covering availability, performance degradation, workload anomalies, storage growth, failover events, and job failures.</li>
                     </ul>
-                    <div class="tl-tags"><span class="tag tag-accent">SQL Server</span><span class="tag tag-accent">Data Engineering</span><span class="tag tag-accent">AlwaysOn AG</span><span class="tag tag-accent">PostgreSQL</span><span class="tag">Grafana</span><span class="tag">Metabase</span>
-                        <span class="tag">Prometheus</span><span class="tag">T-SQL</span><span class="tag">Zabbix</span></div>
+                    <div class="tl-tags"><span class="tag tag-accent">SQL Server</span><span class="tag tag-accent">Data Engineering</span><span class="tag tag-accent">AlwaysOn AG</span><span class="tag tag-accent">PostgreSQL</span><span class="tag">Grafana</span><span class="tag">Metabase</span><span class="tag">Prometheus</span><span class="tag">T-SQL</span><span class="tag">Zabbix</span></div>
                 </div>
                 <div class="timeline-item">
                     <div class="tl-date">March 2021 — Feb 2022</div>
@@ -1546,13 +1652,52 @@
         </section>
         <div class="divider"></div>
 
+        <!-- CV DOWNLOAD -->
+        <section id="cv">
+            <div class="section-label">download</div>
+            <h2>Resume &amp; CV</h2>
+            <div class="cv-grid">
+
+                <a class="cv-card"
+                   href="files/Abolfazl_Rastgar_Academic_CV.pdf"
+                   download="Abolfazl_Rastgar_Academic_CV.pdf">
+                    <div class="cv-card-icon">🎓</div>
+                    <div class="cv-card-body">
+                        <div class="cv-card-type">Academic</div>
+                        <div class="cv-card-name">Academic CV</div>
+                        <div class="cv-card-desc">thesis · research · education · publications</div>
+                    </div>
+                    <div class="cv-card-arrow">↓</div>
+                </a>
+
+                <a class="cv-card"
+                   href="files/Abolfazl_Rastgar_Working_Resume.pdf"
+                   download="Abolfazl_Rastgar_Working_Resume.pdf">
+                    <div class="cv-card-icon">💼</div>
+                    <div class="cv-card-body">
+                        <div class="cv-card-type">Industry</div>
+                        <div class="cv-card-name">Working Resume</div>
+                        <div class="cv-card-desc">experience · projects · skills · certifications</div>
+                    </div>
+                    <div class="cv-card-arrow">↓</div>
+                </a>
+
+            </div>
+            <div class="cv-hint">
+                <span class="prompt">❯</span>
+                <span class="cmd">ls files/ &nbsp;→&nbsp; Abolfazl_Rastgar_Academic_CV.pdf &nbsp;&nbsp;Abolfazl_Rastgar_Working_Resume.pdf</span>
+            </div>
+        </section>
+        <div class="divider"></div>
+
         <!-- GITHUB -->
         <section id="github">
             <div class="section-label">github</div>
             <h2>GitHub Repositories</h2>
             <div id="projects-container">
                 <div class="projects-loading">
-                    <div class="spinner"></div><span>Fetching repositories from GitHub...</span></div>
+                    <div class="spinner"></div><span>Fetching repositories from GitHub...</span>
+                </div>
             </div>
             <p style="margin-top:2rem"><a href="https://github.com/abolfazlrastgar" target="_blank" class="btn btn-outline" style="display:inline-flex">View all on GitHub →</a></p>
         </section>
@@ -1650,14 +1795,14 @@
                 const grid = document.createElement('div');
                 grid.className = 'projects-grid';
                 filtered.forEach(repo => {
-                            const color = langColors[repo.language] || '#5affd4';
-                            const icon = repoIcon(repo.name, repo.description);
-                            const desc = repo.description || 'Public repository from my GitHub profile.';
-                            const card = document.createElement('a');
-                            card.href = repo.html_url;
-                            card.target = '_blank';
-                            card.className = 'project-card';
-                            card.innerHTML = `
+                    const color = langColors[repo.language] || '#5affd4';
+                    const icon = repoIcon(repo.name, repo.description);
+                    const desc = repo.description || 'Public repository from my GitHub profile.';
+                    const card = document.createElement('a');
+                    card.href = repo.html_url;
+                    card.target = '_blank';
+                    card.className = 'project-card';
+                    card.innerHTML = `
         <div class="project-card-header"><span class="project-icon">${icon}</span><span class="project-ext">↗</span></div>
         <div class="project-name">${repo.name}</div>
         <div class="project-desc">${desc}</div>
@@ -1666,21 +1811,21 @@
           ${repo.stargazers_count > 0 ? `<span class="project-stars">★ ${repo.stargazers_count}</span>` : ''}
           ${repo.forks_count > 0 ? `<span>⑂ ${repo.forks_count}</span>` : ''}
         </div>`;
-      grid.appendChild(card);
-    });
-    container.innerHTML = '';
-    container.appendChild(grid);
-  } catch (e) {
-    container.innerHTML = `
+                    grid.appendChild(card);
+                });
+                container.innerHTML = '';
+                container.appendChild(grid);
+            } catch (e) {
+                container.innerHTML = `
       <div class="projects-grid">
         <a href="https://github.com/abolfazlrastgar/profile" target="_blank" class="project-card"><div class="project-card-header"><span class="project-icon">🖥️</span><span class="project-ext">↗</span></div><div class="project-name">profile</div><div class="project-desc">Interactive personal page — profile, skills, experience, education, and projects.</div><div class="project-meta"><span><span class="lang-dot" style="background:#e34c26"></span>HTML</span></div></a>
         <a href="https://github.com/abolfazlrastgar/Databases" target="_blank" class="project-card"><div class="project-card-header"><span class="project-icon">🗄️</span><span class="project-ext">↗</span></div><div class="project-name">Databases</div><div class="project-desc">SQL Server and PostgreSQL scripts, notes, and practical database projects.</div><div class="project-meta"><span><span class="lang-dot" style="background:#e38c00"></span>SQL</span></div></a>
         <a href="https://github.com/abolfazlrastgar/academic-research" target="_blank" class="project-card"><div class="project-card-header"><span class="project-icon">🔬</span><span class="project-ext">↗</span></div><div class="project-name">academic-research</div><div class="project-desc">Academic research portfolio covering ACO, smart-grid security, and AI-based intrusion detection.</div><div class="project-meta"><span><span class="lang-dot" style="background:#5affd4"></span>Research</span></div></a>
       </div>
       <p style="margin-top:1rem;font-size:0.78rem;color:var(--muted);font-family:'DM Mono',monospace;">// GitHub API unavailable — showing fallback</p>`;
-  }
-}
-loadProjects();
+            }
+        }
+        loadProjects();
     </script>
 </body>
 
