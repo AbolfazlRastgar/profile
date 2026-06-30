@@ -1,16 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Abolfazl Rastgar</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet" />
-
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Abolfazl Rastgar</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&amp;family=DM+Mono:ital,wght@0,300;0,400;1,300&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&amp;display=swap" rel="stylesheet"/>
+<style>
         *,
         *::before,
         *::after {
@@ -842,6 +840,179 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* LICENSES & CERTIFICATIONS */
+
+        .certificates-intro {
+            color: var(--muted);
+            max-width: 760px;
+            margin-top: -1.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.96rem;
+            line-height: 1.7;
+        }
+
+        .license-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.3rem;
+        }
+
+        .license-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.6rem;
+            position: relative;
+            overflow: hidden;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+        }
+
+        .license-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            opacity: 0.85;
+        }
+
+        .license-card:hover {
+            border-color: rgba(90, 255, 212, 0.23);
+            transform: translateY(-4px);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.24);
+        }
+
+        .license-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .license-provider {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            color: var(--muted);
+            font-family: 'DM Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .provider-logo {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            object-fit: contain;
+            flex-shrink: 0;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .license-card:hover .provider-logo {
+            transform: scale(1.04);
+            border-color: rgba(90, 255, 212, 0.3);
+            box-shadow: 0 0 0 3px rgba(90, 255, 212, 0.04);
+        }
+
+        .provider-logo.logo-freecodecamp {
+            background: #0a0a23;
+            padding: 0.42rem;
+        }
+
+        .provider-logo.logo-ibm,
+        .provider-logo.logo-databricks,
+        .provider-logo.logo-faratar {
+            background: rgba(255, 255, 255, 0.96);
+            padding: 0.38rem;
+        }
+
+        .provider-logo.logo-ibm {
+            padding: 0.16rem;
+        }
+
+        .provider-logo.logo-faratar {
+            padding: 0.2rem;
+        }
+
+        .provider-mark {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(90, 255, 212, 0.08);
+            border: 1px solid rgba(90, 255, 212, 0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-family: 'Syne', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            flex-shrink: 0;
+        }
+
+        .license-date {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.68rem;
+            color: var(--accent);
+            white-space: nowrap;
+            padding-top: 0.45rem;
+        }
+
+        .license-title {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.08rem;
+            letter-spacing: -0.01em;
+            line-height: 1.3;
+            margin-bottom: 0.55rem;
+        }
+
+        .license-id {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--muted);
+            word-break: break-word;
+            margin-bottom: 1rem;
+        }
+
+        .license-id strong {
+            color: var(--text);
+            font-weight: 300;
+        }
+
+        .license-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-top: auto;
+            margin-bottom: 1.15rem;
+        }
+
+        .license-link {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            align-self: flex-start;
+        }
+
+        .license-link:hover {
+            text-decoration: underline;
+        }
+
         /* IELTS */
         
         .ielts-grid {
@@ -1328,414 +1499,1261 @@
                 text-align: center;
             }
         }
-    </style>
+
+
+        /* ─────────────────────────────────────────────
+           PREMIUM UI VARIANT · Professional Portfolio Skin
+           Content is intentionally preserved; only presentation is changed.
+        ───────────────────────────────────────────── */
+
+        :root {
+            --bg: #07111f;
+            --surface: rgba(12, 24, 39, 0.82);
+            --surface-strong: rgba(15, 29, 47, 0.94);
+            --border: rgba(148, 163, 184, 0.18);
+            --accent: #38d9c4;
+            --accent2: #82a8ff;
+            --text: #f3f7fb;
+            --muted: #9aa9ba;
+            --card-bg: rgba(13, 27, 45, 0.72);
+            --shadow-soft: 0 18px 55px rgba(0, 0, 0, 0.34);
+            --shadow-card: 0 18px 42px rgba(0, 0, 0, 0.22);
+        }
+
+        body {
+            background:
+                linear-gradient(180deg, rgba(7, 17, 31, 0.98) 0%, rgba(8, 18, 32, 0.96) 45%, rgba(5, 12, 23, 1) 100%),
+                var(--bg);
+            letter-spacing: -0.005em;
+        }
+
+        body::before {
+            background:
+                radial-gradient(circle at 12% 12%, rgba(56, 217, 196, 0.14), transparent 28%),
+                radial-gradient(circle at 88% 18%, rgba(130, 168, 255, 0.12), transparent 30%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.035), transparent 42%);
+        }
+
+        body::after {
+            background-image:
+                linear-gradient(rgba(148, 163, 184, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148, 163, 184, 0.045) 1px, transparent 1px);
+            background-size: 72px 72px;
+            mask-image: linear-gradient(to bottom, black, transparent 85%);
+        }
+
+        nav {
+            top: 18px;
+            left: 50%;
+            right: auto;
+            width: min(1120px, calc(100% - 32px));
+            transform: translateX(-50%);
+            padding: 0.86rem 1.1rem;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 999px;
+            background: rgba(7, 17, 31, 0.78);
+            box-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
+        }
+
+        .nav-logo {
+            padding: 0.45rem 0.7rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .nav-links {
+            gap: 0.35rem;
+        }
+
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 0 0.78rem;
+            border-radius: 999px;
+            color: #a8b4c6;
+        }
+
+        .nav-links a:hover {
+            background: rgba(56, 217, 196, 0.08);
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .hero {
+            max-width: 1180px;
+            min-height: 94vh;
+            padding-top: 9.5rem;
+        }
+
+        .hero-inner {
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 3rem;
+            padding: 2.1rem;
+            border: 1px solid rgba(148, 163, 184, 0.16);
+            border-radius: 30px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018));
+            box-shadow: var(--shadow-soft);
+            backdrop-filter: blur(18px);
+        }
+
+        .hero-tag,
+        .section-label,
+        .sub-label {
+            width: fit-content;
+            padding: 0.36rem 0.72rem;
+            border: 1px solid rgba(56, 217, 196, 0.2);
+            border-radius: 999px;
+            background: rgba(56, 217, 196, 0.06);
+            color: #7df5e4;
+        }
+
+        .hero-tag::before,
+        .section-label::before,
+        .sub-label::after {
+            display: none;
+        }
+
+        h1 {
+            font-size: clamp(3.1rem, 6vw, 5.6rem);
+            line-height: 0.98;
+            margin-bottom: 1.4rem;
+        }
+
+        h1 .highlight {
+            background: linear-gradient(120deg, #ffffff 0%, #73f3dd 38%, #8aaeff 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            max-width: 580px;
+            font-size: 1.1rem;
+            color: #aebaca;
+        }
+
+        .btn {
+            border-radius: 999px;
+            padding: 0.9rem 1.55rem;
+            box-shadow: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #06111f;
+            font-weight: 700;
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.035);
+            border-color: rgba(148, 163, 184, 0.2);
+        }
+
+        .terminal-card,
+        .skill-group,
+        .db-card,
+        .education-card,
+        .project-card,
+        .license-card,
+        .ielts-card,
+        .cv-card,
+        .contact-link,
+        .stat-item,
+        .cert-item {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.022));
+            border-color: rgba(148, 163, 184, 0.17);
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(14px);
+        }
+
+        .terminal-card {
+            border-radius: 22px;
+            transform: none;
+        }
+
+        .terminal-bar {
+            background: rgba(255, 255, 255, 0.055);
+        }
+
+        section {
+            max-width: 1180px;
+            padding-top: 6.5rem;
+            padding-bottom: 6.5rem;
+        }
+
+        h2 {
+            margin-bottom: 2.5rem;
+            font-size: clamp(2.1rem, 4vw, 3rem);
+        }
+
+        .about-grid,
+        .contact-wrapper {
+            gap: 2rem;
+        }
+
+        .about-text,
+        .contact-text {
+            padding: 2rem;
+            border: 1px solid rgba(148, 163, 184, 0.14);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        .stats-grid {
+            border-radius: 24px;
+            background: rgba(148, 163, 184, 0.15);
+        }
+
+        .stat-item {
+            padding: 1.8rem;
+        }
+
+        .stat-num {
+            font-size: 2.3rem;
+        }
+
+        .skills-grid,
+        .projects-grid,
+        .license-grid {
+            gap: 1.15rem;
+        }
+
+        .skill-group,
+        .project-card,
+        .education-card,
+        .license-card,
+        .cv-card,
+        .ielts-card {
+            border-radius: 22px;
+        }
+
+        .skill-group:hover,
+        .db-card:hover,
+        .education-card:hover,
+        .project-card:hover,
+        .license-card:hover,
+        .cv-card:hover,
+        .ielts-card:hover,
+        .contact-link:hover {
+            transform: translateY(-6px);
+            border-color: rgba(56, 217, 196, 0.34);
+            box-shadow: 0 26px 60px rgba(0, 0, 0, 0.34);
+        }
+
+        .tag {
+            border-radius: 999px;
+            background: rgba(148, 163, 184, 0.08);
+        }
+
+        .tag-accent {
+            background: rgba(56, 217, 196, 0.09);
+        }
+
+        .tag-purple {
+            background: rgba(130, 168, 255, 0.1);
+        }
+
+        .tag-orange {
+            background: rgba(255, 208, 107, 0.1);
+        }
+
+        .db-grid {
+            grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+        }
+
+        .db-card {
+            border-radius: 18px;
+            min-height: 128px;
+            justify-content: center;
+        }
+
+        .timeline::before {
+            left: 12px;
+            background: linear-gradient(var(--accent), rgba(130, 168, 255, 0.35));
+        }
+
+        .timeline-item {
+            margin-bottom: 1.1rem;
+            padding: 1.45rem 1.55rem 1.55rem 3.15rem;
+            border: 1px solid rgba(148, 163, 184, 0.14);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.022);
+        }
+
+        .timeline-item::before {
+            left: 7px;
+            top: 1.8rem;
+            width: 12px;
+            height: 12px;
+            border-width: 3px;
+        }
+
+        .tl-role,
+        .edu-degree,
+        .project-name,
+        .license-title,
+        .cv-card-name,
+        .contact-link-text strong {
+            color: #f7fbff;
+        }
+
+        .education-card::before,
+        .project-card::before,
+        .license-card::before,
+        .ielts-card::before,
+        .cv-card::before {
+            height: 1px;
+            opacity: 1;
+        }
+
+        .license-card {
+            min-height: 265px;
+        }
+
+        .provider-logo,
+        .provider-mark,
+        .cv-card-icon,
+        .contact-link-icon {
+            border-radius: 14px;
+        }
+
+        .contact-wrapper {
+            align-items: stretch;
+        }
+
+        .contact-links {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.9rem;
+        }
+
+        .contact-link {
+            border-radius: 20px;
+            min-height: 82px;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-4px);
+        }
+
+        .divider {
+            max-width: 1180px;
+            background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.22), transparent);
+        }
+
+        footer {
+            max-width: 1180px;
+            border-top: 0;
+            padding-top: 2.5rem;
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                top: 10px;
+                border-radius: 20px;
+            }
+            .hero-inner {
+                grid-template-columns: 1fr;
+            }
+            .terminal-card {
+                transform: none;
+            }
+            .about-text,
+            .contact-text {
+                padding: 1.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                width: calc(100% - 20px);
+                padding: 0.85rem 1rem;
+            }
+            .hero {
+                padding-top: 7rem;
+            }
+            .hero-inner {
+                padding: 1.15rem;
+                border-radius: 22px;
+            }
+            section {
+                padding-top: 4.5rem;
+                padding-bottom: 4.5rem;
+            }
+            .timeline-item {
+                padding-left: 2.5rem;
+            }
+            .timeline::before {
+                left: 8px;
+            }
+            .timeline-item::before {
+                left: 3px;
+            }
+        }
+
+
+        /* ─────────────────────────────────────────────
+           HERO OPS PANEL + SELECTED PROJECTS UPGRADE
+        ───────────────────────────────────────────── */
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-visual::before {
+            content: '';
+            position: absolute;
+            inset: 8% -4% -6% 8%;
+            border-radius: 32px;
+            background: linear-gradient(135deg, rgba(56, 217, 196, 0.12), rgba(130, 168, 255, 0.08));
+            filter: blur(18px);
+            z-index: -1;
+        }
+
+        .ops-panel {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            border-radius: 28px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025)),
+                rgba(12, 24, 39, 0.86);
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.34);
+            backdrop-filter: blur(18px);
+            padding: 1.45rem;
+        }
+
+        .ops-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 0%, rgba(56, 217, 196, 0.16), transparent 34%),
+                radial-gradient(circle at 96% 10%, rgba(130, 168, 255, 0.14), transparent 32%);
+            pointer-events: none;
+        }
+
+        .ops-panel > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .ops-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+        }
+
+        .ops-title-group {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .ops-status {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: rgba(56, 217, 196, 0.1);
+            border: 1px solid rgba(56, 217, 196, 0.24);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-family: 'DM Mono', monospace;
+            font-size: 1rem;
+        }
+
+        .ops-kicker {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--accent);
+            margin-bottom: 0.18rem;
+        }
+
+        .ops-heading {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text);
+            letter-spacing: -0.01em;
+        }
+
+        .ops-live {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.68rem;
+            color: #8ee9da;
+            padding: 0.28rem 0.55rem;
+            border: 1px solid rgba(56, 217, 196, 0.2);
+            border-radius: 999px;
+            background: rgba(56, 217, 196, 0.07);
+            white-space: nowrap;
+        }
+
+        .ops-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .ops-metric {
+            min-height: 92px;
+            padding: 1rem;
+            border: 1px solid rgba(148, 163, 184, 0.14);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .ops-num {
+            display: block;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.55rem;
+            font-weight: 800;
+            line-height: 1;
+            color: #f7fbff;
+            margin-bottom: 0.38rem;
+        }
+
+        .ops-label {
+            display: block;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.66rem;
+            line-height: 1.45;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .ops-flow {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr;
+            align-items: center;
+            gap: 0.55rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border: 1px solid rgba(148, 163, 184, 0.14);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .ops-node {
+            min-height: 58px;
+            border-radius: 14px;
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            background: rgba(7, 17, 31, 0.42);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0.72rem 0.8rem;
+        }
+
+        .ops-node strong {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.86rem;
+            color: var(--text);
+            margin-bottom: 0.1rem;
+        }
+
+        .ops-node span {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.62rem;
+            color: var(--muted);
+        }
+
+        .ops-arrow {
+            color: var(--accent);
+            font-family: 'DM Mono', monospace;
+        }
+
+        .ops-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .ops-chip {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.68rem;
+            color: #b9c7d8;
+            padding: 0.36rem 0.62rem;
+            border: 1px solid rgba(148, 163, 184, 0.16);
+            border-radius: 999px;
+            background: rgba(148, 163, 184, 0.07);
+        }
+
+        .terminal-card {
+            transform: none !important;
+        }
+
+        .projects-intro {
+            max-width: 760px;
+            margin: -1.3rem 0 2rem;
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .selected-project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.1rem;
+        }
+
+        .selected-project-card {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 310px;
+            padding: 1.55rem;
+            border: 1px solid rgba(148, 163, 184, 0.16);
+            border-radius: 24px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.062), rgba(255, 255, 255, 0.022));
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(14px);
+            transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+        }
+
+        .selected-project-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            opacity: 0.9;
+        }
+
+        .selected-project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(56, 217, 196, 0.34);
+            box-shadow: 0 26px 60px rgba(0, 0, 0, 0.34);
+        }
+
+        .selected-project-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .selected-project-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(56, 217, 196, 0.09);
+            border: 1px solid rgba(56, 217, 196, 0.22);
+            font-size: 1.15rem;
+            flex: 0 0 auto;
+        }
+
+        .selected-project-period {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.66rem;
+            color: var(--muted);
+            padding: 0.28rem 0.52rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.16);
+            background: rgba(148, 163, 184, 0.07);
+            white-space: nowrap;
+        }
+
+        .selected-project-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.06rem;
+            font-weight: 700;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+            color: #f7fbff;
+            margin-bottom: 0.5rem;
+        }
+
+        .selected-project-stack {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.69rem;
+            line-height: 1.55;
+            color: #8ee9da;
+            margin-bottom: 0.9rem;
+        }
+
+        .selected-project-desc {
+            color: var(--muted);
+            font-size: 0.89rem;
+            line-height: 1.72;
+            margin-bottom: 1.1rem;
+        }
+
+        .selected-project-card .tl-tags {
+            margin-top: auto;
+        }
+
+        @media (max-width: 980px) {
+            .selected-project-grid {
+                grid-template-columns: 1fr;
+            }
+            .ops-metrics {
+                grid-template-columns: 1fr;
+            }
+            .ops-flow {
+                grid-template-columns: 1fr;
+            }
+            .ops-arrow {
+                display: none;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .ops-panel {
+                padding: 1rem;
+                border-radius: 22px;
+            }
+            .ops-top {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+            .selected-project-card {
+                padding: 1.25rem;
+            }
+            .selected-project-head {
+                flex-direction: column;
+            }
+        }
+
+    
+
+        /* V4 polish: straight terminal hero + database tiles aligned with skill cards */
+        .hero-visual .terminal-card {
+            transform: none !important;
+            rotate: 0deg !important;
+            width: 100%;
+        }
+
+        .hero-visual .terminal-body {
+            min-height: 330px;
+        }
+
+        .db-tile-grid {
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .db-tile {
+            min-height: 190px;
+        }
+
+        .db-tile .skill-group-title {
+            margin-bottom: 0.85rem;
+        }
+</style>
 </head>
-
 <body>
-    <nav>
-        <a class="nav-logo" href="#"><span>~</span>/abolfazl</a>
-        <ul class="nav-links">
-            <li><a href="#about">about</a></li>
-            <li><a href="#skills">skills</a></li>
-            <li><a href="#projects">projects</a></li>
-            <li><a href="#education">education</a></li>
-            <li><a href="#experience">exp</a></li>
-            <li><a href="#ielts">ielts</a></li>
-            <li><a href="#cv">cv</a></li>
-            <li><a href="#github">github</a></li>
-            <li><a href="#contact">contact</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <!-- HERO -->
-        <div class="hero">
-            <div class="hero-inner">
-                <div>
-                    <p class="hero-tag">Open to opportunities</p>
-                    <h1><span class="line">Abolfazl</span><span class="line highlight">Rastgar</span></h1>
-                    <p class="hero-desc">Data Engineer &amp; SQL databases specialist with 4+ years building large-scale data platforms, ETL pipelines, and high-availability database infrastructure for real production environments.</p>
-                    <div class="hero-actions"><a href="#projects" class="btn btn-primary">View Projects ↓</a><a href="#contact" class="btn btn-outline">Get in Touch</a></div>
-                </div>
-                <div class="hero-visual">
-                    <div class="terminal-card">
-                        <div class="terminal-bar"><span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span><span class="terminal-title">abolfazl@localhost — bash</span></div>
-                        <div class="terminal-body">
-                            <div class="t-line"><span class="t-prompt">❯ </span><span>cat profile.json</span></div>
-                            <div class="t-line t-out">{</div>
-                            <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"name"</span>: <span class="t-val">"Abolfazl Rastgar"</span>,</span></div>
-                            <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"role"</span>: <span class="t-val">"Database Specialist"</span>,</span></div>
-                            <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"focus"</span>: <span class="t-val">"Data Engineering"</span>,</span></div>
-                            <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"experience"</span>: <span class="t-val">"4+ years"</span>,</span></div>
-                            <div class="t-line"><span style="padding-left:1rem"><span class="t-key">"status"</span>: <span class="t-val">"open to work ✓"</span></span></div>
-                            <div class="t-line t-out">}</div>
-                            <div class="t-line" style="margin-top:0.8rem"><span class="t-prompt">❯ </span><span>ls sections/</span></div>
-                            <div class="t-line" style="color:#9d95ff; font-family:'DM Mono',monospace; font-size:0.82rem;">about/&nbsp;&nbsp;skills/&nbsp;&nbsp;projects/&nbsp;&nbsp;education/&nbsp;&nbsp;experience/&nbsp;&nbsp;ielts/&nbsp;&nbsp;github/&nbsp;&nbsp;contact/</div>
-                            <div class="t-line" style="margin-top:0.8rem"><span class="t-prompt">❯ </span><span class="t-cursor"></span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ABOUT -->
-        <section id="about">
-            <div class="section-label">about me</div>
-            <h2>Background &amp; Focus</h2>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>I'm <strong>Abolfazl Rastgar</strong>, a database and data engineering practitioner focused on building reliable data systems for real production environments.</p>
-                    <p>Over the past <strong>4+ years</strong>, my work has centered around SQL Server Database Administration, performance tuning, query optimization, database operations, and large-scale data environments.</p>
-                    <p>I've also worked with <strong>PostgreSQL</strong> — my second but very real database love — <strong>ClickHouse</strong>, and <strong>Elasticsearch</strong>, which gives me a broader view of how different data systems behave, scale, and fail.</p>
-                    <p>On the data engineering side, I work with ETL processes, data workflows, <strong>Kafka</strong>, <strong>Spark</strong>, Python, SQL, and modern analytics engineering practices.</p>
-                </div>
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-num">4+</div>
-                        <div class="stat-label">Years in Production Data</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-num">50+</div>
-                        <div class="stat-label">SQL Server Instances Managed</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-num">M.Sc.</div>
-                        <div class="stat-label">Computer Engineering · IUST</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-num">TB+</div>
-                        <div class="stat-label">Multi-Terabyte Environments</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <div class="divider"></div>
-
-        <!-- SKILLS -->
-        <section id="skills">
-            <div class="section-label">technical skills</div>
-            <h2>What I Work With</h2>
-            <div class="skills-grid">
-                <div class="skill-group">
-                    <div class="skill-group-icon">📝</div>
-                    <div class="skill-group-title">Languages</div>
-                    <div class="skill-tags"><span class="tag tag-accent">T-SQL</span><span class="tag tag-accent">Python</span><span class="tag">JavaScript</span><span class="tag">Bash</span></div>
-                </div>
-                <div class="skill-group">
-                    <div class="skill-group-icon">⚙️</div>
-                    <div class="skill-group-title">Data Engineering</div>
-                    <div class="skill-tags"><span class="tag tag-accent">SSIS</span><span class="tag tag-accent">ETL / ELT Pipelines</span><span class="tag tag-accent">Apache Kafka</span><span class="tag tag-accent">Apache Spark</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Incremental Loads</span><span class="tag">Change Tracking</span><span class="tag">SQL Agent</span></div>
-                </div>
-                <div class="skill-group">
-                    <div class="skill-group-icon">📊</div>
-                    <div class="skill-group-title">Observability &amp; BI</div>
-                    <div class="skill-tags"><span class="tag tag-accent">Grafana</span><span class="tag tag-accent">Prometheus</span><span class="tag tag-accent">Zabbix</span><span class="tag">Redgate SQL Monitor</span><span class="tag tag-purple">Power BI</span><span class="tag">Metabase</span></div>
-                </div>
-                <div class="skill-group">
-                    <div class="skill-group-icon">🎯</div>
-                    <div class="skill-group-title">Performance &amp; Tuning</div>
-                    <div class="skill-tags"><span class="tag tag-orange">Query Optimization</span><span class="tag tag-orange">Partitioning</span><span class="tag tag-orange">FILESTREAM</span><span class="tag tag-orange">T-SQL query optimizer</span></div>
-                </div>
-                <div class="skill-group">
-                    <div class="skill-group-icon">🖥️</div>
-                    <div class="skill-group-title">Infrastructure &amp; HA</div>
-                    <div class="skill-tags"><span class="tag tag-accent">AlwaysOn AG</span><span class="tag tag-accent">WSFC</span><span class="tag tag-accent">HA / DR</span><span class="tag">Backup Strategy</span><span class="tag">Linux (LPIC-1)</span><span class="tag">Windows Server</span><span class="tag">Docker</span></div>
-                </div>
-                <div class="skill-group">
-                    <div class="skill-group-icon">🔬</div>
-                    <div class="skill-group-title">Research &amp; Algorithms</div>
-                    <div class="skill-tags"><span class="tag tag-purple">Smart Grids</span><span class="tag tag-purple">Cybersecurity</span><span class="tag tag-purple">Artificial Intelligence</span><span class="tag tag-purple">Machine Learning</span><span class="tag tag-purple">Scikit-Learn</span><span class="tag tag-purple">Random Forest</span><span class="tag tag-purple">Ant Colony Optimization</span></div>
-                </div>
-            </div>
-            <div class="db-section">
-                <div class="sub-label">databases</div>
-                <div class="db-grid">
-                    <div class="db-card expert">
-                        <div class="db-name">SQL Server</div>
-                        <div class="db-type">RDBMS · Microsoft</div>
-                        <div class="db-badge">Expert</div>
-                    </div>
-                    <div class="db-card proficient">
-                        <div class="db-name">PostgreSQL</div>
-                        <div class="db-type">RDBMS · Open Source</div>
-                        <div class="db-badge">Proficient</div>
-                    </div>
-                    <div class="db-card proficient">
-                        <div class="db-name">ClickHouse</div>
-                        <div class="db-type">OLAP · Columnar</div>
-                        <div class="db-badge">Intermediate</div>
-                    </div>
-                    <div class="db-card proficient">
-                        <div class="db-name">Elasticsearch</div>
-                        <div class="db-type">Search &amp; Analytics</div>
-                        <div class="db-badge">Learning</div>
-                    </div>
-                    <div class="db-card growing">
-                        <div class="db-name">Redis</div>
-                        <div class="db-type">In-Memory · Cache</div>
-                        <div class="db-badge">Learning</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <div class="divider"></div>
-
-        <!-- PROJECTS -->
-        <section id="projects">
-            <div class="section-label">projects</div>
-            <h2>Engineering Projects</h2>
-            <div class="timeline project-timeline">
-                <div class="timeline-item">
-                    <div class="tl-date">Professional Project · Production Data Platform</div>
-                    <div class="tl-role">Centralized Banking Reporting &amp; Data Serving Layer</div>
-                    <div class="tl-place">City Innovation &amp; Development — Data Engineering / Database Platform</div>
-                    <div class="tl-desc">Designed data delivery and reporting flows that move operational banking data into structured analytical layers for dashboards, monitoring, and decision-making.</div>
-                    <ul class="tl-bullets">
-                        <li>Built ETL and near-real-time integration flows between operational databases and analytical/reporting layers.</li>
-                        <li>Worked with SQL Server, Kafka, Debezium, Spark, and monitoring tools to improve visibility and data availability.</li>
-                        <li>Focused on reliability, consistency, performance, and data access patterns for technical and business users.</li>
-                    </ul>
-                    <div class="tl-tags"><span class="tag tag-accent">SQL Server</span><span class="tag tag-accent">Kafka</span><span class="tag tag-accent">Spark</span><span class="tag">ETL</span><span class="tag">Data Platform</span><span class="tag">Reporting Layer</span></div>
-                </div>
-                <div class="timeline-item">
-                    <div class="tl-date">Professional Project · Database Reliability</div>
-                    <div class="tl-role">Backup Monitoring &amp; Operational Visibility</div>
-                    <div class="tl-place">SQL Server Operations / Monitoring Practice</div>
-                    <div class="tl-desc">Built practical monitoring views and reporting layers to track backup health, database status, job failures, and operational risks across SQL Server environments.</div>
-                    <ul class="tl-bullets">
-                        <li>Created consistent database-level visibility across multiple SQL Server instances.</li>
-                        <li>Structured backup and operational data so it could be consumed by dashboards, alerts, and BI tools.</li>
-                        <li>Improved daily database operations through clearer status reporting and faster issue detection.</li>
-                    </ul>
-                    <div class="tl-tags"><span class="tag tag-accent">SQL Server</span><span class="tag">T-SQL</span><span class="tag">Monitoring</span><span class="tag">Backup Strategy</span><span class="tag">Operational Reporting</span></div>
-                </div>
-                <div class="timeline-item">
-                    <div class="tl-date">Personal Project · GitHub Pages</div>
-                    <div class="tl-role">Interactive Personal Web Profile</div>
-                    <div class="tl-place"><a href="https://abolfazlrastgar.github.io/profile/" target="_blank">abolfazlrastgar.github.io/profile</a></div>
-                    <div class="tl-desc">Designed a personal GitHub Pages website to present technical background, experience, education, projects, repositories, and contact points in a clean developer-oriented interface.</div>
-                    <ul class="tl-bullets">
-                        <li>Built with HTML, CSS, and JavaScript, with GitHub repository integration for public project discovery.</li>
-                        <li>Structured the page around database engineering, data platforms, academic background, and professional experience.</li>
-                        <li>Used a modern dark UI with terminal-inspired visual elements and responsive layout.</li>
-                    </ul>
-                    <div class="tl-tags"><span class="tag tag-orange">HTML</span><span class="tag tag-orange">CSS</span><span class="tag">JavaScript</span><span class="tag">GitHub Pages</span><span class="tag">Portfolio</span></div>
-                </div>
-            </div>
-        </section>
-        <div class="divider"></div>
-
-        <!-- EDUCATION -->
-        <section id="education">
-            <div class="section-label">education</div>
-            <h2>Academic Background</h2>
-            <div class="education-grid">
-                <div class="education-card featured">
-                    <div class="edu-kicker">graduate degree</div>
-                    <div class="edu-degree">M.Sc. in Computer Engineering</div>
-                    <div class="edu-meta">Iran University of Science and Technology (IUST) · Tehran, Iran · Sep 2020 — Dec 2022</div>
-                    <p class="edu-detail">Graduate studies focused on computer networks, smart-grid communication, cybersecurity, artificial intelligence, and machine learning-based intrusion detection.</p>
-                    <div class="tl-tags"><span class="tag tag-purple">Computer Engineering</span><span class="tag tag-purple">Network Security</span><span class="tag tag-purple">Machine Learning</span><span class="tag">IUST</span></div>
-                </div>
-                <div class="education-card">
-                    <div class="edu-kicker">master's thesis · 2023</div>
-                    <div class="edu-degree">AI-Based Intrusion Detection in Smart Grids</div>
-                    <div class="edu-meta">Random Forest · Cross-Validation · NSL-KDD · CICIDS2018</div>
-                    <p class="edu-detail">Designed an anomaly-based intrusion detection model for smart-grid environments. The main idea was improving attack classification reliability by combining Random Forest with cross-validation and evaluating the model on benchmark IDS datasets.</p>
-                    <ul class="edu-list">
-                        <li><strong>Tools:</strong> Python, Scikit-Learn, IDS datasets, evaluation metrics.</li>
-                        <li><strong>Focus:</strong> DoS, DDoS, Probe, R2L, U2R, and malicious traffic classification.</li>
-                        <li><strong>Innovation:</strong> Cross-validation-based model evaluation for more stable IDS performance analysis.</li>
-                    </ul>
-                    <div class="tl-tags"><span class="tag tag-purple">IDS</span><span class="tag tag-purple">Random Forest</span><span class="tag">Python</span><span class="tag">Smart Grid</span></div>
-                </div>
-                <div class="education-card">
-                    <div class="edu-kicker">master's seminar · 2020–2022</div>
-                    <div class="edu-degree">Security Challenges of TCP/IP-Based Smart Grids</div>
-                    <div class="edu-meta">TCP/IP Security · CIA Model · Smart Grid Communication</div>
-                    <p class="edu-detail">Reviewed security requirements and attack surfaces in TCP/IP-based smart-grid communication. The work connected smart-grid architecture with practical cybersecurity risks in critical infrastructure.</p>
-                    <ul class="edu-list">
-                        <li><strong>Focus:</strong> Confidentiality, integrity, availability, authentication, authorization, access control, and privacy.</li>
-                        <li><strong>Threats:</strong> DoS, DDoS, spoofing, replay, MITM, data injection, and eavesdropping.</li>
-                        <li><strong>Outcome:</strong> A clearer understanding of how network-layer risks affect smart-grid reliability.</li>
-                    </ul>
-                    <div class="tl-tags"><span class="tag tag-purple">TCP/IP</span><span class="tag tag-purple">Cybersecurity</span><span class="tag">CIA Model</span><span class="tag">Smart Grid</span></div>
-                </div>
-                <div class="education-card featured">
-                    <div class="edu-kicker">bachelor's thesis · 2017</div>
-                    <div class="edu-degree">Shortest Path Search Using Ant Colony Optimization</div>
-                    <div class="edu-meta">Graph Optimization · Swarm Intelligence · MATLAB</div>
-                    <p class="edu-detail">Modeled the shortest path problem using Ant Colony Optimization. The work introduced algorithmic modeling, metaheuristic search, and simulation-based optimization.</p>
-                    <ul class="edu-list">
-                        <li><strong>Tools:</strong> MATLAB and graph-based simulation.</li>
-                        <li><strong>Focus:</strong> Pheromone update, evaporation, path cost, and iterative improvement.</li>
-                        <li><strong>Outcome:</strong> A practical foundation in optimization, graph search, and algorithmic problem solving.</li>
-                    </ul>
-                    <div class="tl-tags"><span class="tag tag-orange">ACO</span><span class="tag tag-orange">Shortest Path</span><span class="tag">MATLAB</span><span class="tag">Metaheuristics</span></div>
-                </div>
-            </div>
-        </section>
-        <div class="divider"></div>
-
-        <!-- EXPERIENCE -->
-        <section id="experience">
-            <div class="section-label">experience</div>
-            <h2>Where I've Been</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="tl-date">Feb 2022 — Present</div>
-                    <div class="tl-role">SQL Server DBA &amp; Data Engineer</div>
-                    <div class="tl-place">City Innovation &amp; Development · <a href="https://shahrdi.com" target="_blank">shahrdi.com</a> — Tehran, Iran</div>
-                    <ul class="tl-bullets">
-                        <li>Managed 50+ SQL Server OLTP/OLAP environments across multi-TB banking systems, ensuring stability, availability, and production SLA compliance.</li>
-                        <li>Designed and operated high-availability database architectures, including multi-site AlwaysOn Availability Groups for critical banking workloads.</li>
-                        <li>Led database reliability and disaster recovery initiatives, reducing recovery time objectives through structured backup, retention, encryption, and failover strategies.</li>
-                        <li>Improved performance and storage efficiency in large-scale production databases by analyzing query behavior, execution bottlenecks, indexing strategy, data growth patterns, and operational workloads.</li>
-                        <li>Designed data pipelines for a centralized banking reporting platform, enabling consistent data delivery from operational systems to analytical and reporting layers.</li>
-                        <li>Implemented real-time and near-real-time data integration flows using Kafka, Debezium, and Spark to move operational database changes into a Lakehouse environment.</li>
-                        <li>Built purpose-driven data serving layers for different user groups, including self-service analytics for business teams and high-volume operational analytics for technical and operations teams.</li>
-                        <li>Developed cross-system reporting and data integration processes to support unified dashboards, operational visibility, and faster decision-making across banking services.</li>
-                        <li>Established production monitoring and alerting practices across database and data platforms, covering availability, performance degradation, workload anomalies, storage growth, failover events, and job failures.</li>
-                    </ul>
-                    <div class="tl-tags"><span class="tag tag-accent">SQL Server</span><span class="tag tag-accent">Data Engineering</span><span class="tag tag-accent">AlwaysOn AG</span><span class="tag tag-accent">PostgreSQL</span><span class="tag">Grafana</span><span class="tag">Metabase</span><span class="tag">Prometheus</span><span class="tag">T-SQL</span><span class="tag">Zabbix</span></div>
-                </div>
-                <div class="timeline-item">
-                    <div class="tl-date">March 2021 — Feb 2022</div>
-                    <div class="tl-role">Technical Support &amp; SQL Optimization</div>
-                    <div class="tl-place">Tirajeh Rayaneh Tehran · <a href="https://trt-co.ir" target="_blank">trt-co.ir</a> — Tehran, Iran</div>
-                    <ul class="tl-bullets">
-                        <li>Supported the "Shafa" Windows and web application in critical hospital environments including Baqiyatallah.</li>
-                        <li>Identified slow queries using SQL Server Profiler and redesigned indexes from execution plan analysis.</li>
-                        <li>Diagnosed application-level bugs in large production databases through Profiler trace sessions.</li>
-                        <li>Designed and executed migration plans with minimum downtime for production workloads.</li>
-                    </ul>
-                    <div class="tl-tags"><span class="tag tag-accent">T-SQL</span><span class="tag">SQL Server Profiler</span><span class="tag">Execution Plans</span><span class="tag">Index Redesign</span><span class="tag">Migration Planning</span></div>
-                </div>
-            </div>
-            <div class="sub-label" style="margin-top:0.5rem; padding-left:2.5rem;">certifications</div>
-            <div class="certs">
-                <div class="cert-item cert-main"><span class="cert-label done">CERTIFIED</span>SQL Server Database Administrator · Farata az Danesh Academy</div>
-                <div class="cert-item cert-main"><span class="cert-label done">CERTIFIED</span>SQL Server Performance Tuning · Farata az Danesh Academy</div>
-                <div class="cert-item cert-wip" style="opacity:0.85;"><span class="cert-label wip">IN PROGRESS</span>Linux LPIC-1</div>
-                <div class="cert-item cert-wip" style="opacity:0.85;"><span class="cert-label wip">IN PROGRESS</span>PostgreSQL</div>
-                <div class="cert-item cert-wip" style="opacity:0.85;"><span class="cert-label wip">IN PROGRESS</span>ClickHouse</div>
-                <div class="cert-item cert-wip" style="opacity:0.85;"><span class="cert-label wip">IN PROGRESS</span>Elasticsearch</div>
-                <div class="cert-item cert-wip" style="opacity:0.85;"><span class="cert-label wip">IN PROGRESS</span>Apache Kafka</div>
-                <div class="cert-item cert-wip" style="opacity:0.85;"><span class="cert-label wip">IN PROGRESS</span>Apache Spark</div>
-            </div>
-        </section>
-        <div class="divider"></div>
-
-        <!-- IELTS -->
-        <section id="ielts">
-            <div class="section-label">english proficiency</div>
-            <h2>IELTS Academic</h2>
-            <div class="ielts-grid">
-                <div class="ielts-card">
-                    <div class="ielts-skill">Speaking</div>
-                    <div class="ielts-band">6.5</div>
-                </div>
-                <div class="ielts-card">
-                    <div class="ielts-skill">Reading</div>
-                    <div class="ielts-band">6.0</div>
-                </div>
-                <div class="ielts-card">
-                    <div class="ielts-skill">Writing</div>
-                    <div class="ielts-band">6.0</div>
-                </div>
-                <div class="ielts-card">
-                    <div class="ielts-skill">Listening</div>
-                    <div class="ielts-band">6.0</div>
-                </div>
-            </div>
-            <div class="ielts-overall">Overall Band Score · <strong>6.0</strong></div>
-        </section>
-        <div class="divider"></div>
-
-        <!-- CV DOWNLOAD -->
-        <section id="cv">
-            <div class="section-label">download</div>
-            <h2>Resume &amp; CV</h2>
-            <div class="cv-grid">
-
-                <a class="cv-card"
-                   href="files/Abolfazl_Rastgar_Academic_CV.pdf"
-                   download="Abolfazl_Rastgar_Academic_CV.pdf">
-                    <div class="cv-card-icon">🎓</div>
-                    <div class="cv-card-body">
-                        <div class="cv-card-type">Academic</div>
-                        <div class="cv-card-name">Academic CV</div>
-                        <div class="cv-card-desc">thesis · research · education · publications</div>
-                    </div>
-                    <div class="cv-card-arrow">↓</div>
-                </a>
-
-                <a class="cv-card"
-                   href="files/Abolfazl_Rastgar_Working_CV.pdf"
-                   download="Abolfazl_Rastgar_Working_CV.pdf">
-                    <div class="cv-card-icon">💼</div>
-                    <div class="cv-card-body">
-                        <div class="cv-card-type">Industry</div>
-                        <div class="cv-card-name">Working Resume</div>
-                        <div class="cv-card-desc">experience · projects · skills · certifications</div>
-                    </div>
-                    <div class="cv-card-arrow">↓</div>
-                </a>
-
-            </div>
-            <div class="cv-hint">
-                <span class="prompt">❯</span>
-                <span class="cmd">ls files/ &nbsp;→&nbsp; Abolfazl_Rastgar_Academic_CV.pdf &nbsp;&nbsp;Abolfazl_Rastgar_Working_CV.pdf</span>
-            </div>
-        </section>
-        <div class="divider"></div>
-
-        <!-- GITHUB -->
-        <section id="github">
-            <div class="section-label">github</div>
-            <h2>GitHub Repositories</h2>
-            <div id="projects-container">
-                <div class="projects-loading">
-                    <div class="spinner"></div><span>Fetching repositories from GitHub...</span>
-                </div>
-            </div>
-            <p style="margin-top:2rem"><a href="https://github.com/abolfazlrastgar" target="_blank" class="btn btn-outline" style="display:inline-flex">View all on GitHub →</a></p>
-        </section>
-        <div class="divider"></div>
-
-        <!-- CONTACT -->
-        <section id="contact">
-            <div class="section-label">contact</div>
-            <h2>Let's Connect</h2>
-            <div class="contact-wrapper">
-                <div class="contact-text">
-                    <p>I'm open to data engineering roles, database consulting, and interesting conversations about large-scale data systems, infrastructure, and performance engineering.</p>
-                    <p>Feel free to reach out — I'll get back to you.</p>
-                </div>
-                <div class="contact-links">
-                    <a href="https://github.com/abolfazlrastgar" target="_blank" class="contact-link">
-                        <div class="contact-link-icon">⌥</div>
-                        <div class="contact-link-text"><strong>GitHub</strong><span>github.com/abolfazlrastgar</span></div>
-                    </a>
-                    <a href="mailto:ablfzl.rstgr@gmail.com" class="contact-link">
-                        <div class="contact-link-icon">@</div>
-                        <div class="contact-link-text"><strong>Email</strong><span>ablfzl.rstgr@gmail.com</span></div>
-                    </a>
-                    <a href="https://abolfazlrastgar.github.io/profile/" target="_blank" class="contact-link">
-                        <div class="contact-link-icon">$</div>
-                        <div class="contact-link-text"><strong>Terminal Profile</strong><span>abolfazlrastgar.github.io/profile</span></div>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>© 2025 <span class="footer-accent">Abolfazl Rastgar</span></p>
-        <p>Built with <span class="footer-accent">HTML / CSS / JS</span> · Hosted on GitHub Pages</p>
-    </footer>
-
-    <script>
+<nav>
+<a class="nav-logo" href="#"><span>~</span>/abolfazl</a>
+<ul class="nav-links">
+<li><a href="#about">about</a></li>
+<li><a href="#skills">skills</a></li>
+<li><a href="#projects">projects</a></li>
+<li><a href="#education">education</a></li>
+<li><a href="#experience">exp</a></li>
+<li><a href="#certificates">certs</a></li>
+<li><a href="#ielts">ielts</a></li>
+<li><a href="#cv">cv</a></li>
+<li><a href="#github">github</a></li>
+<li><a href="#contact">contact</a></li>
+</ul>
+</nav>
+<main>
+<!-- HERO -->
+<div class="hero">
+<div class="hero-inner">
+<div>
+<p class="hero-tag">Open to opportunities</p>
+<h1><span class="line">Abolfazl</span><span class="line highlight">Rastgar</span></h1>
+<p class="hero-desc">Data Engineer &amp; SQL databases specialist with 4+ years building large-scale data platforms, ETL pipelines, and high-availability database infrastructure for real production environments.</p>
+<div class="hero-actions"><a class="btn btn-primary" href="#projects">View Projects ↓</a><a class="btn btn-outline" href="#contact">Get in Touch</a></div>
+</div>
+<div class="hero-visual">
+<div aria-label="Terminal-style professional profile summary" class="terminal-card">
+<div class="terminal-bar">
+<span class="dot dot-r"></span>
+<span class="dot dot-y"></span>
+<span class="dot dot-g"></span>
+<span class="terminal-title">abolfazl@localhost — bash</span>
+</div>
+<div class="terminal-body">
+<div class="t-line"><span class="t-prompt">❯ </span><span>cat profile.json</span></div>
+<div class="t-line t-out">{</div>
+<div class="t-line"><span style="padding-left:1rem"><span class="t-key">"name"</span>: <span class="t-val">"Abolfazl Rastgar"</span>,</span></div>
+<div class="t-line"><span style="padding-left:1rem"><span class="t-key">"role"</span>: <span class="t-val">"Data Engineer | SQL Server DBA"</span>,</span></div>
+<div class="t-line"><span style="padding-left:1rem"><span class="t-key">"focus"</span>: <span class="t-val">"Database Platforms &amp; Data Engineering"</span>,</span></div>
+<div class="t-line"><span style="padding-left:1rem"><span class="t-key">"stack"</span>: <span class="t-val">"SQL Server · PostgreSQL · Kafka · Spark"</span>,</span></div>
+<div class="t-line"><span style="padding-left:1rem"><span class="t-key">"experience"</span>: <span class="t-val">"4+ years"</span>,</span></div>
+<div class="t-line"><span style="padding-left:1rem"><span class="t-key">"status"</span>: <span class="t-val">"open to work ✓"</span></span></div>
+<div class="t-line t-out">}</div>
+<div class="t-line" style="margin-top:0.8rem"><span class="t-prompt">❯ </span><span>ls sections/</span></div>
+<div class="t-line" style="color:#9d95ff; font-family:'DM Mono',monospace; font-size:0.82rem;">about/  skills/  projects/  education/  experience/  certificates/  ielts/  cv/  github/  contact/</div>
+<div class="t-line" style="margin-top:0.8rem"><span class="t-prompt">❯ </span><span class="t-cursor"></span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ABOUT -->
+<section id="about">
+<div class="section-label">about me</div>
+<h2>Background &amp; Focus</h2>
+<div class="about-grid">
+<div class="about-text">
+<p>I'm <strong>Abolfazl Rastgar</strong>, a database and data engineering practitioner focused on building reliable data systems for real production environments.</p>
+<p>Over the past <strong>4+ years</strong>, my work has centered around SQL Server Database Administration, performance tuning, query optimization, database operations, and large-scale data environments.</p>
+<p>I've also worked with <strong>PostgreSQL</strong> — my second but very real database love — <strong>ClickHouse</strong>, and <strong>Elasticsearch</strong>, which gives me a broader view of how different data systems behave, scale, and fail.</p>
+<p>On the data engineering side, I work with ETL processes, data workflows, <strong>Kafka</strong>, <strong>Spark</strong>, Python, SQL, and modern analytics engineering practices.</p>
+</div>
+<div class="stats-grid">
+<div class="stat-item">
+<div class="stat-num">4+</div>
+<div class="stat-label">Years in Production Data</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">50+</div>
+<div class="stat-label">SQL Server Instances Managed</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">M.Sc.</div>
+<div class="stat-label">Computer Engineering · IUST</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">TB+</div>
+<div class="stat-label">Multi-Terabyte Environments</div>
+</div>
+</div>
+</div>
+</section>
+<div class="divider"></div>
+<!-- SKILLS -->
+<section id="skills">
+<div class="section-label">technical skills</div>
+<h2>What I Work With</h2>
+<div class="skills-grid">
+<div class="skill-group">
+<div class="skill-group-icon">📝</div>
+<div class="skill-group-title">Languages</div>
+<div class="skill-tags"><span class="tag tag-accent">T-SQL</span><span class="tag tag-accent">Python</span><span class="tag">JavaScript</span><span class="tag">Bash</span></div>
+</div>
+<div class="skill-group">
+<div class="skill-group-icon">⚙️</div>
+<div class="skill-group-title">Data Engineering</div>
+<div class="skill-tags"><span class="tag tag-accent">SSIS</span><span class="tag tag-accent">ETL / ELT Pipelines</span><span class="tag tag-accent">Apache Kafka</span><span class="tag tag-accent">Apache Spark</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Incremental Loads</span><span class="tag">Change Tracking</span><span class="tag">SQL Agent</span></div>
+</div>
+<div class="skill-group">
+<div class="skill-group-icon">📊</div>
+<div class="skill-group-title">Observability &amp; BI</div>
+<div class="skill-tags"><span class="tag tag-accent">Grafana</span><span class="tag tag-accent">Prometheus</span><span class="tag tag-accent">Zabbix</span><span class="tag">Redgate SQL Monitor</span><span class="tag tag-purple">Power BI</span><span class="tag">Metabase</span></div>
+</div>
+<div class="skill-group">
+<div class="skill-group-icon">🎯</div>
+<div class="skill-group-title">Performance &amp; Tuning</div>
+<div class="skill-tags"><span class="tag tag-orange">Query Optimization</span><span class="tag tag-orange">Partitioning</span><span class="tag tag-orange">FILESTREAM</span><span class="tag tag-orange">T-SQL query optimizer</span></div>
+</div>
+<div class="skill-group">
+<div class="skill-group-icon">🖥️</div>
+<div class="skill-group-title">Infrastructure &amp; HA</div>
+<div class="skill-tags"><span class="tag tag-accent">AlwaysOn AG</span><span class="tag tag-accent">WSFC</span><span class="tag tag-accent">HA / DR</span><span class="tag">Backup Strategy</span><span class="tag">Linux (LPIC-1)</span><span class="tag">Windows Server</span><span class="tag">Docker</span></div>
+</div>
+<div class="skill-group">
+<div class="skill-group-icon">🔬</div>
+<div class="skill-group-title">Research &amp; Algorithms</div>
+<div class="skill-tags"><span class="tag tag-purple">Smart Grids</span><span class="tag tag-purple">Cybersecurity</span><span class="tag tag-purple">Artificial Intelligence</span><span class="tag tag-purple">Machine Learning</span><span class="tag tag-purple">Scikit-Learn</span><span class="tag tag-purple">Random Forest</span><span class="tag tag-purple">Ant Colony Optimization</span></div>
+</div>
+</div>
+<div class="db-section">
+<div class="sub-label">databases</div>
+<div class="db-grid db-tile-grid">
+<div class="skill-group db-tile">
+<div class="skill-group-icon">🗄️</div>
+<div class="skill-group-title">SQL Server</div>
+<div class="skill-tags"><span class="tag tag-accent">OLTP / OLAP</span><span class="tag tag-accent">AlwaysOn AG</span><span class="tag">Performance Tuning</span><span class="tag">Backup / DR</span></div>
+</div>
+<div class="skill-group db-tile">
+<div class="skill-group-icon">🐘</div>
+<div class="skill-group-title">PostgreSQL</div>
+<div class="skill-tags"><span class="tag tag-accent">RDBMS</span><span class="tag">Backup / Restore</span><span class="tag">CDC</span><span class="tag">Production Work</span></div>
+</div>
+<div class="skill-group db-tile">
+<div class="skill-group-icon">⚡</div>
+<div class="skill-group-title">ClickHouse</div>
+<div class="skill-tags"><span class="tag tag-purple">OLAP</span><span class="tag">Columnar Storage</span><span class="tag">Analytics Layer</span><span class="tag">Reporting</span></div>
+</div>
+<div class="skill-group db-tile">
+<div class="skill-group-icon">🔎</div>
+<div class="skill-group-title">Elasticsearch</div>
+<div class="skill-tags"><span class="tag tag-purple">Search</span><span class="tag">Analytics</span><span class="tag">Indexing</span><span class="tag">Log / Data Access</span></div>
+</div>
+<div class="skill-group db-tile">
+<div class="skill-group-icon">🚀</div>
+<div class="skill-group-title">Redis</div>
+<div class="skill-tags"><span class="tag tag-orange">In-Memory</span><span class="tag">Cache</span><span class="tag">Key-Value Store</span><span class="tag">Fast Access</span></div>
+</div>
+</div>
+</div>
+</section>
+<div class="divider"></div>
+<!-- PROJECTS -->
+<section class="selected-projects-section" id="projects">
+<div class="section-label">projects</div>
+<h2>Selected Engineering Projects</h2>
+<p class="projects-intro">A more complete project section based on my resume, covering database reliability, HA/DR, performance tuning, observability, CDC/data integration, reconciliation services, and AI-based security research.</p>
+<div class="selected-project-grid">
+<article class="selected-project-card">
+<div class="selected-project-head">
+<div class="selected-project-icon">🛡️</div>
+<div class="selected-project-period">Feb 2022 — Present</div>
+</div>
+<h3 class="selected-project-title">Enterprise SQL Server HA/DR Platform</h3>
+<div class="selected-project-stack">SQL Server · AlwaysOn Availability Groups · WSFC · Backup/Restore · Disaster Recovery</div>
+<p class="selected-project-desc">Designed and operated a multi-site SQL Server AlwaysOn Availability Group platform across a 3-node WSFC cluster, supporting more than 500 databases and ~20 TB of production financial data; maintained HA/DR architecture targeting RTO &lt; 30 minutes and RPO &lt; 15 minutes.</p>
+<div class="tl-tags"><span class="tag tag-accent">SQL Server</span><span class="tag tag-accent">AlwaysOn AG</span><span class="tag tag-purple">WSFC</span><span class="tag">HA / DR</span><span class="tag">Backup/Restore</span></div>
+</article>
+<article class="selected-project-card">
+<div class="selected-project-head">
+<div class="selected-project-icon">⚡</div>
+<div class="selected-project-period">Feb 2022 — Present</div>
+</div>
+<h3 class="selected-project-title">SQL Server Performance &amp; Storage Optimization Program</h3>
+<div class="selected-project-stack">SQL Server · T-SQL · Execution Plans · Index Tuning · Statistics · Capacity Planning</div>
+<p class="selected-project-desc">Improved storage efficiency by reducing MDF footprint by approximately 70% and removing approximately 30% redundant data/index overhead; optimized reporting and OLTP performance using execution plan analysis, covering/filtered indexes, statistics maintenance, and query pattern review.</p>
+<div class="tl-tags"><span class="tag tag-accent">T-SQL</span><span class="tag tag-accent">Execution Plans</span><span class="tag tag-purple">Index Tuning</span><span class="tag">Statistics</span><span class="tag">Capacity Planning</span></div>
+</article>
+<article class="selected-project-card">
+<div class="selected-project-head">
+<div class="selected-project-icon">📊</div>
+<div class="selected-project-period">2022 — Present</div>
+</div>
+<h3 class="selected-project-title">Database Fleet Monitoring &amp; Observability Platform</h3>
+<div class="selected-project-stack">Grafana · Prometheus · Zabbix · Redgate SQL Monitor · T-SQL · SQL Server · Windows Server</div>
+<p class="selected-project-desc">Built Grafana dashboards using Prometheus SQL Server and Windows exporters to monitor AlwaysOn AG health, SQL Agent jobs, blocking/deadlocks, CPU, memory, disk I/O, and storage growth; integrated Zabbix, Redgate SQL Monitor, SMS/email alerts, and custom T-SQL checks.</p>
+<div class="tl-tags"><span class="tag tag-accent">Grafana</span><span class="tag tag-accent">Prometheus</span><span class="tag tag-purple">Zabbix</span><span class="tag">Redgate</span><span class="tag">SQL Server</span></div>
+</article>
+<article class="selected-project-card">
+<div class="selected-project-head">
+<div class="selected-project-icon">🧩</div>
+<div class="selected-project-period">2022 — Present</div>
+</div>
+<h3 class="selected-project-title">SQL Server Estate Standardization &amp; Maintenance Automation</h3>
+<div class="selected-project-stack">SQL Server · SQL Agent · T-SQL · Backup Jobs · Index Maintenance · Monitoring</div>
+<p class="selected-project-desc">Standardized SQL Server administration practices across 50+ production instances, including SQL Agent jobs, backup schedules, index/statistics maintenance, monitoring checks, capacity planning, and repeatable maintenance workflows.</p>
+<div class="tl-tags"><span class="tag tag-accent">SQL Agent</span><span class="tag tag-accent">T-SQL</span><span class="tag tag-purple">Maintenance</span><span class="tag">Monitoring</span><span class="tag">Automation</span></div>
+</article>
+<article class="selected-project-card">
+<div class="selected-project-head">
+<div class="selected-project-icon">💾</div>
+<div class="selected-project-period">Jun 2025 — Present</div>
+</div>
+<h3 class="selected-project-title">Backup, Restore &amp; Recovery Strategy for Production Databases</h3>
+<div class="selected-project-stack">PostgreSQL · ClickHouse · SQL Server · Backup/Restore · Restore Testing · Backup Encryption · DR Runbooks</div>
+<p class="selected-project-desc">Designed and maintained backup and recovery strategies for production SQL Server databases, including Full, Differential, and Transaction Log backup schedules, restore verification, retention policies, backup encryption, documented recovery procedures, and storage optimization reducing backup storage consumption by approximately 7 TB.</p>
+<div class="tl-tags"><span class="tag tag-accent">Backup</span><span class="tag tag-accent">Restore Testing</span><span class="tag tag-purple">Encryption</span><span class="tag">DR Runbooks</span><span class="tag">SQL Server</span></div>
+</article>
+<article class="selected-project-card">
+<div class="selected-project-head">
+<div class="selected-project-icon">🌊</div>
+<div class="selected-project-period">Jun 2025 — Present</div>
+</div>
+<h3 class="selected-project-title">Centralized Banking Data Platform — Real-Time Integration Layer</h3>
+<div class="selected-project-stack">PostgreSQL · ClickHouse · SQL Server · Kafka · Debezium · Apache Spark · SSIS · Metabase</div>
+<p class="selected-project-desc">Built an end-to-end data platform ingesting operational changes from 50+ SQL Server instances via Debezium CDC streaming and SSIS batch ETL; supports multi-TB financial data across analytical and reporting consumers with full observability coverage.</p>
+<div class="tl-tags"><span class="tag tag-accent">Kafka</span><span class="tag tag-accent">Debezium</span><span class="tag tag-purple">Spark</span><span class="tag">SSIS</span><span class="tag">Metabase</span></div>
+</article>
+<article class="selected-project-card">
+<div class="selected-project-head">
+<div class="selected-project-icon">🔄</div>
+<div class="selected-project-period">Jun 2025 — Present</div>
+</div>
+<h3 class="selected-project-title">Cross-Platform Account-Opening Reconciliation Service</h3>
+<div class="selected-project-stack">PostgreSQL · SQL Server · SSIS · T-SQL · Metabase</div>
+<p class="selected-project-desc">Centralized reporting service aggregating account-opening data from heterogeneous banking platforms; standardized ETL schemas, automated reconciliation logic, and optimized query patterns for near-real-time data delivery.</p>
+<div class="tl-tags"><span class="tag tag-accent">PostgreSQL</span><span class="tag tag-accent">SQL Server</span><span class="tag tag-purple">SSIS</span><span class="tag">Reconciliation</span><span class="tag">Metabase</span></div>
+</article>
+<article class="selected-project-card">
+<div class="selected-project-head">
+<div class="selected-project-icon">🔬</div>
+<div class="selected-project-period">2022 — 2023</div>
+</div>
+<h3 class="selected-project-title">AI-Based Intrusion Detection System — Smart Grid Research</h3>
+<div class="selected-project-stack">Python · Scikit-Learn · Random Forest · Cybersecurity · Smart Grid Security</div>
+<p class="selected-project-desc">Graduate cybersecurity research project focused on network intrusion detection in smart-grid environments using a full ML pipeline with k-fold cross-validation and multi-class classification. Published as M.Sc. thesis, IUST.</p>
+<div class="tl-tags"><span class="tag tag-accent">Python</span><span class="tag tag-accent">Scikit-Learn</span><span class="tag tag-purple">IDS</span><span class="tag">Cybersecurity</span><span class="tag">Smart Grid</span></div>
+</article>
+</div>
+</section>
+<div class="divider"></div>
+<!-- EDUCATION -->
+<section id="education">
+<div class="section-label">education</div>
+<h2>Academic Background</h2>
+<div class="education-grid">
+<div class="education-card featured">
+<div class="edu-kicker">graduate degree</div>
+<div class="edu-degree">M.Sc. in Computer Engineering</div>
+<div class="edu-meta">Iran University of Science and Technology (IUST) · Tehran, Iran · Sep 2020 — Dec 2022</div>
+<p class="edu-detail">Graduate studies focused on computer networks, smart-grid communication, cybersecurity, artificial intelligence, and machine learning-based intrusion detection.</p>
+<div class="tl-tags"><span class="tag tag-purple">Computer Engineering</span><span class="tag tag-purple">Network Security</span><span class="tag tag-purple">Machine Learning</span><span class="tag">IUST</span></div>
+</div>
+<div class="education-card">
+<div class="edu-kicker">master's thesis · 2023</div>
+<div class="edu-degree">AI-Based Intrusion Detection in Smart Grids</div>
+<div class="edu-meta">Random Forest · Cross-Validation · NSL-KDD · CICIDS2018</div>
+<p class="edu-detail">Designed an anomaly-based intrusion detection model for smart-grid environments. The main idea was improving attack classification reliability by combining Random Forest with cross-validation and evaluating the model on benchmark IDS datasets.</p>
+<ul class="edu-list">
+<li><strong>Tools:</strong> Python, Scikit-Learn, IDS datasets, evaluation metrics.</li>
+<li><strong>Focus:</strong> DoS, DDoS, Probe, R2L, U2R, and malicious traffic classification.</li>
+<li><strong>Innovation:</strong> Cross-validation-based model evaluation for more stable IDS performance analysis.</li>
+</ul>
+<div class="tl-tags"><span class="tag tag-purple">IDS</span><span class="tag tag-purple">Random Forest</span><span class="tag">Python</span><span class="tag">Smart Grid</span></div>
+</div>
+<div class="education-card">
+<div class="edu-kicker">master's seminar · 2020–2022</div>
+<div class="edu-degree">Security Challenges of TCP/IP-Based Smart Grids</div>
+<div class="edu-meta">TCP/IP Security · CIA Model · Smart Grid Communication</div>
+<p class="edu-detail">Reviewed security requirements and attack surfaces in TCP/IP-based smart-grid communication. The work connected smart-grid architecture with practical cybersecurity risks in critical infrastructure.</p>
+<ul class="edu-list">
+<li><strong>Focus:</strong> Confidentiality, integrity, availability, authentication, authorization, access control, and privacy.</li>
+<li><strong>Threats:</strong> DoS, DDoS, spoofing, replay, MITM, data injection, and eavesdropping.</li>
+<li><strong>Outcome:</strong> A clearer understanding of how network-layer risks affect smart-grid reliability.</li>
+</ul>
+<div class="tl-tags"><span class="tag tag-purple">TCP/IP</span><span class="tag tag-purple">Cybersecurity</span><span class="tag">CIA Model</span><span class="tag">Smart Grid</span></div>
+</div>
+<div class="education-card featured">
+<div class="edu-kicker">bachelor's thesis · 2017</div>
+<div class="edu-degree">Shortest Path Search Using Ant Colony Optimization</div>
+<div class="edu-meta">Graph Optimization · Swarm Intelligence · MATLAB</div>
+<p class="edu-detail">Modeled the shortest path problem using Ant Colony Optimization. The work introduced algorithmic modeling, metaheuristic search, and simulation-based optimization.</p>
+<ul class="edu-list">
+<li><strong>Tools:</strong> MATLAB and graph-based simulation.</li>
+<li><strong>Focus:</strong> Pheromone update, evaporation, path cost, and iterative improvement.</li>
+<li><strong>Outcome:</strong> A practical foundation in optimization, graph search, and algorithmic problem solving.</li>
+</ul>
+<div class="tl-tags"><span class="tag tag-orange">ACO</span><span class="tag tag-orange">Shortest Path</span><span class="tag">MATLAB</span><span class="tag">Metaheuristics</span></div>
+</div>
+</div>
+</section>
+<div class="divider"></div>
+<!-- EXPERIENCE -->
+<section id="experience">
+<div class="section-label">experience</div>
+<h2>Where I've Been</h2>
+<div class="timeline">
+<div class="timeline-item">
+<div class="tl-date">Feb 2022 — Present</div>
+<div class="tl-role">SQL Server DBA &amp; Data Engineer</div>
+<div class="tl-place">City Innovation &amp; Development · <a href="https://shahrdi.com" target="_blank">shahrdi.com</a> — Tehran, Iran</div>
+<ul class="tl-bullets">
+<li>Managed 50+ SQL Server OLTP/OLAP environments across multi-TB banking systems, ensuring stability, availability, and production SLA compliance.</li>
+<li>Designed and operated high-availability database architectures, including multi-site AlwaysOn Availability Groups for critical banking workloads.</li>
+<li>Led database reliability and disaster recovery initiatives, reducing recovery time objectives through structured backup, retention, encryption, and failover strategies.</li>
+<li>Improved performance and storage efficiency in large-scale production databases by analyzing query behavior, execution bottlenecks, indexing strategy, data growth patterns, and operational workloads.</li>
+<li>Designed data pipelines for a centralized banking reporting platform, enabling consistent data delivery from operational systems to analytical and reporting layers.</li>
+<li>Implemented real-time and near-real-time data integration flows using Kafka, Debezium, and Spark to move operational database changes into a Lakehouse environment.</li>
+<li>Built purpose-driven data serving layers for different user groups, including self-service analytics for business teams and high-volume operational analytics for technical and operations teams.</li>
+<li>Developed cross-system reporting and data integration processes to support unified dashboards, operational visibility, and faster decision-making across banking services.</li>
+<li>Established production monitoring and alerting practices across database and data platforms, covering availability, performance degradation, workload anomalies, storage growth, failover events, and job failures.</li>
+</ul>
+<div class="tl-tags"><span class="tag tag-accent">SQL Server</span><span class="tag tag-accent">Data Engineering</span><span class="tag tag-accent">AlwaysOn AG</span><span class="tag tag-accent">PostgreSQL</span><span class="tag">Grafana</span><span class="tag">Metabase</span><span class="tag">Prometheus</span><span class="tag">T-SQL</span><span class="tag">Zabbix</span></div>
+</div>
+<div class="timeline-item">
+<div class="tl-date">March 2021 — Feb 2022</div>
+<div class="tl-role">Technical Support &amp; SQL Optimization</div>
+<div class="tl-place">Tirajeh Rayaneh Tehran · <a href="https://trt-co.ir" target="_blank">trt-co.ir</a> — Tehran, Iran</div>
+<ul class="tl-bullets">
+<li>Supported the "Shafa" Windows and web application in critical hospital environments including Baqiyatallah.</li>
+<li>Identified slow queries using SQL Server Profiler and redesigned indexes from execution plan analysis.</li>
+<li>Diagnosed application-level bugs in large production databases through Profiler trace sessions.</li>
+<li>Designed and executed migration plans with minimum downtime for production workloads.</li>
+</ul>
+<div class="tl-tags"><span class="tag tag-accent">T-SQL</span><span class="tag">SQL Server Profiler</span><span class="tag">Execution Plans</span><span class="tag">Index Redesign</span><span class="tag">Migration Planning</span></div>
+</div>
+</div>
+</section>
+<div class="divider"></div>
+<!-- LICENSES & CERTIFICATIONS -->
+<section id="certificates">
+<div class="section-label">licenses &amp; certifications</div>
+<h2>Certificates &amp; Licenses</h2>
+<p class="certificates-intro">Selected credentials from my LinkedIn profile, focused on Python, cybersecurity, artificial intelligence, generative AI, and database administration.</p>
+<div class="license-grid">
+<article class="license-card">
+<div class="license-top">
+<div class="license-provider"><img alt="freeCodeCamp logo" class="provider-logo logo-freecodecamp" loading="lazy" src="data:image/png;base64,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"/>freeCodeCamp</div>
+<div class="license-date">Jun 2026</div>
+</div>
+<div class="license-title">Scientific Computing with Python</div>
+<div class="license-id"><strong>Credential ID:</strong> abolfazlrastgar-scwp</div>
+<div class="license-skills"><span class="tag tag-accent">Python</span><span class="tag">Scientific Computing</span></div>
+<a class="license-link" href="https://www.linkedin.com/in/abolfazl-rastgar/details/certifications/" target="_blank">View on LinkedIn →</a>
+</article>
+<article class="license-card">
+<div class="license-top">
+<div class="license-provider"><img alt="IBM logo" class="provider-logo logo-ibm" loading="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAANCAYAAACzbK7QAAACk0lEQVR4nL2Sy2tVZxTFf9/jnHNPyL16CY1JbWNaEa0jCUJU6KClVlIKhUqhk04KrQP/HwdO7cSZ4KiIIEpLVXw/aBtfl8SkJVUvJtd7z3e+b28HR9F/wO7BZrMX7MXaaxlVVd5h2Xd5/P8leP2oSEQRQEABBW0azZTehlAEAVSluSGvdw3qAUQh1BEvYMUzLCrGqoJBDmpHZLVDrCOPFi0qKjMGSfC8INcW1oBQkaqS2oHHQg45NAQxwekrnrXREBXPZu/YtjVyu2fxsYVYUKPsmK7ZNdvi7GUYJsGlcT7bK8y0LY/6Gb/eaRRMjykLew3YVwQAy//B/WclvobJjqE9odxftYQQoPR4sdxdMdxbtvzbh9Xg0Qj9kDjyufLHHc/dnlAkqKciqANs44F3cOSg0LLPWRrAT4ciC9sDX8wFHq/Bd7trfv4GVtdhfQBHD49oS2LpSeLCYsa1x3DqxpB/VpTaww9f5mRZjRrTKLAG8jzxydYOH3ShcB7rCyY3CXt2Rn5bKtDlmvnZjO/nA6Uads/CxGbHELj1V2Lu4xISvNdJdA0kWmDimxTZlJFE2HABJ5ZoFZJFYg5J0JGnjkrQHMSTBMbHA+NWeBIM3RY4BZGEpSJTeGV3k6IN4O/eC25ez+ljSNGwsjHk98XI/tmKbw8ZLvUMJ85DiI4Hi46bj3LmZiwXe4ovnnP1oXJp2bGuBQIYBaOqWkc4fibxZ9/hUk2nBft2ZFy4HajqHFPAmAyoU8FHM55na/B0KHQnRxz9tOSXc4avD8CxM0qqEu93Ez8uFGyy1ZsUTXUcJoskdbQddMvA9JTF6BAvOcmV7Nximd8WOHk9Z2Jg6XQdUsJX+5VuDh/OjMj6JZ22wQkk53gJ9585toVr4aYAAAAASUVORK5CYII="/>IBM</div>
+<div class="license-date">Credential</div>
+</div>
+<div class="license-title">Cybersecurity Fundamentals</div>
+<div class="license-id"><strong>Credential ID:</strong> CREDLY-b8810a57-2c5a-4bbc-81f1-9bfc649ad13d</div>
+<div class="license-skills"><span class="tag tag-purple">Cybersecurity</span><span class="tag">Security Fundamentals</span></div>
+<a class="license-link" href="https://www.linkedin.com/in/abolfazl-rastgar/details/certifications/" target="_blank">View on LinkedIn →</a>
+</article>
+<article class="license-card">
+<div class="license-top">
+<div class="license-provider"><img alt="IBM logo" class="provider-logo logo-ibm" loading="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAANCAYAAACzbK7QAAACk0lEQVR4nL2Sy2tVZxTFf9/jnHNPyL16CY1JbWNaEa0jCUJU6KClVlIKhUqhk04KrQP/HwdO7cSZ4KiIIEpLVXw/aBtfl8SkJVUvJtd7z3e+b28HR9F/wO7BZrMX7MXaaxlVVd5h2Xd5/P8leP2oSEQRQEABBW0azZTehlAEAVSluSGvdw3qAUQh1BEvYMUzLCrGqoJBDmpHZLVDrCOPFi0qKjMGSfC8INcW1oBQkaqS2oHHQg45NAQxwekrnrXREBXPZu/YtjVyu2fxsYVYUKPsmK7ZNdvi7GUYJsGlcT7bK8y0LY/6Gb/eaRRMjykLew3YVwQAy//B/WclvobJjqE9odxftYQQoPR4sdxdMdxbtvzbh9Xg0Qj9kDjyufLHHc/dnlAkqKciqANs44F3cOSg0LLPWRrAT4ciC9sDX8wFHq/Bd7trfv4GVtdhfQBHD49oS2LpSeLCYsa1x3DqxpB/VpTaww9f5mRZjRrTKLAG8jzxydYOH3ShcB7rCyY3CXt2Rn5bKtDlmvnZjO/nA6Uads/CxGbHELj1V2Lu4xISvNdJdA0kWmDimxTZlJFE2HABJ5ZoFZJFYg5J0JGnjkrQHMSTBMbHA+NWeBIM3RY4BZGEpSJTeGV3k6IN4O/eC25ez+ljSNGwsjHk98XI/tmKbw8ZLvUMJ85DiI4Hi46bj3LmZiwXe4ovnnP1oXJp2bGuBQIYBaOqWkc4fibxZ9/hUk2nBft2ZFy4HajqHFPAmAyoU8FHM55na/B0KHQnRxz9tOSXc4avD8CxM0qqEu93Ez8uFGyy1ZsUTXUcJoskdbQddMvA9JTF6BAvOcmV7Nximd8WOHk9Z2Jg6XQdUsJX+5VuDh/OjMj6JZ22wQkk53gJ9585toVr4aYAAAAASUVORK5CYII="/>IBM</div>
+<div class="license-date">Jun 2026</div>
+</div>
+<div class="license-title">Exploring Artificial Intelligence</div>
+<div class="license-id"><strong>Credential ID:</strong> ALM-COURSE_3825247</div>
+<div class="license-skills"><span class="tag tag-purple">Artificial Intelligence</span><span class="tag">AI Fundamentals</span></div>
+<a class="license-link" href="https://www.linkedin.com/in/abolfazl-rastgar/details/certifications/" target="_blank">View on LinkedIn →</a>
+</article>
+<article class="license-card">
+<div class="license-top">
+<div class="license-provider"><img alt="Databricks logo" class="provider-logo logo-databricks" loading="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAgCAYAAADqgqNBAAAE5ElEQVR4nM2XbWiWVRjHf+ec+372zFnOpqVhWWq26cyRa2okvqEoofRiCZpoL/ahFMIUQ0ypKTotsaKiyAyTmJhTwojMsDLT6bIQ0WKoGUi+oMvXPc/u+1xXHzYr4n4mBi3/H+8vv3Nd5/+/rnMbPfSzUvUi/FhHm6isHOZWQo/eGH36UW0z8N8P8M46jFb00LYlt6j2EPZ/AbfoWoQbvLGAAQU1gIK3IASAIqGADRAnEBvECqgFBRBAUWNahQdJH70FFwtYwTuwKmAszgdgM0R9BxI8NBlvY9y69UT1uwkji7fNwMAHxM4QeAWT21KJcOcVrBBbxXmDkRRNaQvXpZGnFpDuW4pWLcWJkFm4gPSeWvyq13GnzxHnebAGpw5M2GrliW73FsQIYWSQIE1Tx+vJGz0ec1c5fPMFuvMruPg7RgzSoR1+8BgYNhrZt528jVuJsscJowg0BCPJ5NpDrUTNGEgX0FheQf7wEdBwFl9TjTv+G7FGBB68U5xPISnBdroJfXQKpn0BvPUunD2GYLFylXAxBtuhEOZXIS7GrlwCx04Qx0ogAqYRdYKJOoBrotmYEQ0FRXS0EKfAld6B33+EoOE0aEJ9uXJuVMADRw/jNR/p2gvBE5gLqAVoD9IOXCNqs4AgLk3HxgvQry924XJ01gqCbrc0dzCHEg1nVODcRXh7KWGfMpgwHR0+Et2wBlNfjxJjvCLOYWOHOMX27I2fOBXSeZgPVxM/Po0UOVreGjx2CiXFBNNn4F+vxFU9T7ZHH9JzV8KerzBrXyUbReRlaEnAMzSVV5BesgB+PQ5FnQmKOhDHQpDU8j+LTLpza7D9ypHn5mFPnsT/chg2rsFZRQYNQYeNw2/fRigx8dARBNs+xezcDQj64FTMzZ3QzeuRfd/jMtmWwfMP1R5KrlwBbAZ7/gzxm4sI7huFf+FlZMsm7PZdaN1u3ITHQFKEy+fjsx5TPpB47DhSO7cT16xCUxD6EMjmrDzRcC62cD7DpW7dCW4fBDU1uJfmYPsPxS9+BdUUl95fgb5XhXcp4sWvYUsrCBbMhk9qCEoHEy7bhNzZBchtuMS2q/UYD3JrTxg3nqi4F2H1BmzdLigphonT8U0x1kRg8uHj9zE/7UUqhmPHT8GfOEjm7gEULFkBB+ogKes5265AUVfsjZ3hg9Xkde0N055ERo7BrK8mrpxJWDEKbxX33ZdwW1/iuVXE7dLkrVqGPXWKgp79wWZJvvBmJUcNMJqFSTMRbUTefAWzfDauezHMqsTu/xZdtxYXKf7ZGbiSobg3lhAcqUdv6ILOX4i51IgePdXaXskxXtUiVpGCFEHpvejY+zFnTiObPkKjRlz/gciwUSBp/I7PMXt3ENh8eHgyWtQOs3kr8YFagovnQF0yOedsF1omk4B1SGEhdswD+LJ7cF9vQXfXQjofCS7hGjwy5D4YMhK7t45oy2foxROkLps8V+m54E3OgvEYhDBrUJeHcTFR+0LCJ2YiA8pg6TxsppDGRXPI33MQ/+5KJNtAmMkQpwQnASZOg42usnJoXoViUQtGFDXNY1edw5QMQB6ZBETY6mqi+h8IvYAEzaP28usHxWiOqLUKb03W/rUwVJOjdCXlitoV9W9gCboWX69tBS8rb3tqC9Myt5I2PcDlH0XAqLay7f9j/a93/gcZMjqE6JRqdgAAAABJRU5ErkJggg=="/>Databricks</div>
+<div class="license-date">May 2026</div>
+</div>
+<div class="license-title">Academy Accreditation - Generative AI Fundamentals</div>
+<div class="license-id"><strong>Credential ID:</strong> 183961537</div>
+<div class="license-skills"><span class="tag tag-purple">Generative AI</span><span class="tag">Databricks</span></div>
+<a class="license-link" href="https://www.linkedin.com/in/abolfazl-rastgar/details/certifications/" target="_blank">View on LinkedIn →</a>
+</article>
+<article class="license-card">
+<div class="license-top">
+<div class="license-provider"><img alt="Faratar Az Danesh logo" class="provider-logo logo-faratar" loading="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAjCAYAAABsFtHvAAAKDUlEQVR4nOWY648V533HP89lLmfm3HYXFtiFDbtggyHGNk4a7BaMAyWKXF/SpnUlJ2lCVTVVU/WmVFWl5l0bBbVS1UptoshJFLWRSB0nbaiBhLRxbIwTsLMO2Ji1Aa/tvbJ7zp5z9szMmcvz9MUhhuYf8IuO9GjejOaj7+/6nRHWWsu7dMl3C/z/G677N4spLL24h7FgsCTdhDBwQSqiqMBzNFJZVppt6vUq1gjanQ61ehkhLAaBxLLS6FKrBghlibqSUqgwBvKsR7VeRjgWiboZLhDC4vkuAolAoHOHUsm5HpsM11EoLYl7GU7gUWQFMtIoVUI6IHWBNtALLG4YoiQIG+EHDsYI0lSgtMRgflE5CCEQUtAvfoHRFiMNiIKiSOhGmrcvL3Dh7FV6qxlYQxQlGKvITcLE1hGGNpbZsHkYv+wipIOVGiEtGIHAggWEvRneh1lrSaIEhMQCcZxQ9BxaixEvnn6N0997icb8KjOXlxE5CAChMMZiMHj+JJt3jFMflmy/ayN33LONwREfSwVrBHmW45ac/5NzYW1hAWwhsBasAZtbGgsdLk1O8/V/PM7sVBPHWAwaKx2kNkhpkBLyPOvXSa4QaY7NQGgfZ63g8Gd/jfcf2sLAYJ28yCiFHqgceT3gwlrTh/8cXMCVl+f42pETTD79KiZzGdse8MBv38foxDB+XTF2ax3HCelGXVxf05qLufryEie++RwvPXuVLLbkMsZzAj70sd18/DMH8Qc9vLCEkDlS3AQ3CIwxNOeu8fqLszx+5AfMXGpw7/1j7P3N3YzvupVSaFHKZaW1Sm2ghCgcOqsrVOoh1hZIA6nV/OS7k5w6epYLk28BEt9RfPQP9vErD93FxI5RlJMipHsdbqwtMORxyrmTl/nKF04wf6XJoU/s4Xc/dwDHL5HmLTxPo4VLc7nD0GCAMZJWq01tYA1W3Mhjc3kWkhqf/dQ/MX+ugbEGUS/xx3/7CAc+uhPt+sjrz0uDQWSWH/z7JF/8m++w+MYyD3zyDh7703vQQQlHpzh5CZm5kDtgFIVRWONgjAJTIGwKNkEVGdLWCIc0R778aYbHhzAaik7Bf371v5l6YQ5z0yqRiIK0Y3ny8edYfKNLuMZy6GP7yDJDslzQaca0WintdkSn1aXV6dFoxSzMNrn8yjWuzbdoLma0G5aVTsxqu0uymiA8w0f+aB+OpxDWMn+pzf98Z5I86d2AC6M5/f2XmL28jFaGhw8fYmLnINWBCvUhSXXIpTzoUB1wqQ24VOsOVd/hh0+c5dypi/z42YtYnVCpOdRqJcp1h+pAmfraMvsf3sme+28jUy5JN+b8uau8eWn+Rp9bK3jiq89gkgztQWVQ02pExN2CLBFYHZNEAscFoTQrSxGnnprk5DcmEbpHt7UVmboMj4bccvsInXaMzRVSQtRN2fvQHZx++nWKrmXuapMrP73GrXdtvh52lbEwvQzGIKXH9FST+kCFypCmusajPjTIwGCVgfoAtYGQ1kyHJx//EY72WHo75vS3XuDMUy+y7e5xamtrVAYr1Iaq75wde8bwVAEIahWf579/8UbYpdUEgQYtSZKYp/7tOS6cfhuSfs+bIsMUGdYCWcaz//UzombG7JuzlIIA41X4/b98iFIoweTYIseaHFtkWJPhl0N0oTFYHE9hiuwG3FrBnffeQlDReL4iS+Dzn3mcb335aZqLXVa7lihPWe2tcuHHc5w5eZE0yXCkYmS8zoHHbmFo6xryHNKeJEsNvSwnyQxFr6AbRSBAWI1XcvEHSzflXGR88k8eYer8PCJVdNoRSzMx3/7iT5g6t8iB39jJ+vG1jO0YYfLMFCuLLax0GNu6nkJlPPZ7HyasOPQXscRPNEHJBwmigFYzIhU5jjaU6yXu+eB7b1KOpj4m+a0/3Mf8coc7d69jaMJh/LYRLk+9wZG/OMYX/uwJTAeas6tgJBs2baIy6DK2dTO1tSEYwIDBIIxCFoA1FMYyfX6RNAftaMZ3jLD7vvU3lCshsK7P/kd2UimH/MNfH6WMx9JCg6G1G6hW2tQGS1xbWmal0UEYxfzCLEqFrN8+QlIYsqhHH62IoxylI4TM6CxavvmlU9hUctuejVhXE1TrNw0ZACxSl7hr/wSf+5dPs/l9E6RJRtJo49cDHvjUfjZMDONXFAKQRcHSTJf1G8v4YYkgdPHLDuVQ4ZUVfsVDiYBv/PNJps7PEyhLMFTi9l8aRbn6hvL+gBcUuaHRbFFbL/idP7+fzuFf5tVXptiwaR1rNwyzPNuhubCEtSCVIaiU+Nmzl9h36E5kWID1SRWsNq7ReMPlK3/3H7z0ozlEIvjAg7vZeHuZPftuR6gM8H4ONyAEWsO69WugbzyodVK27NqI1JakFyGM4D07t/DTZ+aRPUMryXjlhTme/NdnOPjrH8DxYrLEcPqpS5w79TrTF2eRCt57cIJte9dy/4N3ogJLYT20eMdM9Pc5pu9mrAUrCqJujzAIsDIniTIcBUszCX/18a+z+OpCv48V4Eo830FIS2E1RdIDI/BqDg9/Yj93H9rCLdvHMCKhVPYxgJLyxkoFyDPD8lIDYywSn7gbE5R8rDT0kgztGISEC09f4Wt/f4zmNUuRGZTRKFEg6GG0i1OS3HtoB/c9spvy+joDazKECcl7gtH3DCF0D4T3i8rp2zkERljibkwYBCAhihIcz0EoRedak/ZSwvkz07x1ZQaBIqyGeFWP8a3DDI6GjG0dRSlJ0l2lVC5jckua9vADHyMsSvTjLgqTW4GkKCy9JO0XFNDtJgRBGSEMSRKjlY92FI3GErVqFWsF7XaHWq16fcAYpHRot9pUqxWElMRxTBB45Hnf69UHykhpQF737XlWIIRBSY1f8vuu1BqspT/zBQhR4LoeQkAY+gRlH6wgL1LKFR+wGFsghSZNHUqBh5ACKPBLHtYI0lRircFY885Hgzx27Bhnz56llyb0ev2T5SlIw5nnzxDFXawwpFlMYVI83+HIkc+zGrXxAoco6XLuxXOcef4MJ793AseV9NKYNI2xFGR5Rl6kGHKWm8scP36COI77yhcWFti8eTPHjx+n0WhgrWF0dJSZmVkmJydprz7I9PQ0S0tLHD58mFarxfjWCV57/TUuXrzIrl27mJmdYe/evRw9epROt0On0+Hy5cts2rSJbdtu5eWXX6FSrVCr1jh//jyr3YhHH30UuX37dsbHx3Ech0ajwc6dOzAGjDEMDAzw5ptvEYZljDEMDw/TarU48MGDdLtd8jxnZGQUrR3m5xaIogghBHEcE4YhQ0ND5HnGrx46yPvfdzezszNs2bKF4eHh6wVXFNZay8rKClprHMchSRK01hRFgbUWKSXWWmq1GnEc43keq6urtFotqtUqruuysrLCunXraLfbKKUwxuA4Dlrrd96ttcZ1XXzfR0qJeDf/TPwvf0P1tkgOty4AAAAASUVORK5CYII="/>Faratar Az Danesh</div>
+<div class="license-date">Certified</div>
+</div>
+<div class="license-title">SQL Server Database Administrator</div>
+<div class="license-id"><strong>Issuer:</strong> Faratar Az Danesh Academy (Beyond Knowledge)</div>
+<div class="license-skills"><span class="tag tag-accent">SQL Server</span><span class="tag">Database Administration</span></div>
+<a class="license-link" href="https://www.linkedin.com/in/abolfazl-rastgar/details/certifications/" target="_blank">View on LinkedIn →</a>
+</article>
+<article class="license-card">
+<div class="license-top">
+<div class="license-provider"><img alt="Faratar Az Danesh logo" class="provider-logo logo-faratar" loading="lazy" src="data:image/png;base64,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"/>Faratar Az Danesh</div>
+<div class="license-date">Certified</div>
+</div>
+<div class="license-title">SQL Server Performance Tuning</div>
+<div class="license-id"><strong>Issuer:</strong> Faratar Az Danesh Academy (Beyond Knowledge)</div>
+<div class="license-skills"><span class="tag tag-orange">Performance Tuning</span><span class="tag">Query Optimization</span></div>
+<a class="license-link" href="https://www.linkedin.com/in/abolfazl-rastgar/details/certifications/" target="_blank">View on LinkedIn →</a>
+</article>
+</div>
+</section>
+<div class="divider"></div>
+<!-- IELTS -->
+<section id="ielts">
+<div class="section-label">english proficiency</div>
+<h2>IELTS Academic</h2>
+<div class="ielts-grid">
+<div class="ielts-card">
+<div class="ielts-skill">Speaking</div>
+<div class="ielts-band">6.5</div>
+</div>
+<div class="ielts-card">
+<div class="ielts-skill">Reading</div>
+<div class="ielts-band">6.0</div>
+</div>
+<div class="ielts-card">
+<div class="ielts-skill">Writing</div>
+<div class="ielts-band">6.0</div>
+</div>
+<div class="ielts-card">
+<div class="ielts-skill">Listening</div>
+<div class="ielts-band">6.0</div>
+</div>
+</div>
+<div class="ielts-overall">Overall Band Score · <strong>6.0</strong></div>
+</section>
+<div class="divider"></div>
+<!-- CV DOWNLOAD -->
+<section id="cv">
+<div class="section-label">download</div>
+<h2>Resume &amp; CV</h2>
+<div class="cv-grid">
+<a class="cv-card" download="Abolfazl_Rastgar_Academic_CV.pdf" href="files/Abolfazl_Rastgar_Academic_CV.pdf">
+<div class="cv-card-icon">🎓</div>
+<div class="cv-card-body">
+<div class="cv-card-type">Academic</div>
+<div class="cv-card-name">Academic CV</div>
+<div class="cv-card-desc">thesis · research · education · publications</div>
+</div>
+<div class="cv-card-arrow">↓</div>
+</a>
+<a class="cv-card" download="Abolfazl_Rastgar_Working_CV.pdf" href="files/Abolfazl_Rastgar_Working_CV.pdf">
+<div class="cv-card-icon">💼</div>
+<div class="cv-card-body">
+<div class="cv-card-type">Industry</div>
+<div class="cv-card-name">Working Resume</div>
+<div class="cv-card-desc">experience · projects · skills · certifications</div>
+</div>
+<div class="cv-card-arrow">↓</div>
+</a>
+</div>
+<div class="cv-hint">
+<span class="prompt">❯</span>
+<span class="cmd">ls files/  →  Abolfazl_Rastgar_Academic_CV.pdf   Abolfazl_Rastgar_Working_CV.pdf</span>
+</div>
+</section>
+<div class="divider"></div>
+<!-- GITHUB -->
+<section id="github">
+<div class="section-label">github</div>
+<h2>GitHub Repositories</h2>
+<div id="projects-container">
+<div class="projects-loading">
+<div class="spinner"></div><span>Fetching repositories from GitHub...</span>
+</div>
+</div>
+<p style="margin-top:2rem"><a class="btn btn-outline" href="https://github.com/abolfazlrastgar" style="display:inline-flex" target="_blank">View all on GitHub →</a></p>
+</section>
+<div class="divider"></div>
+<!-- CONTACT -->
+<section id="contact">
+<div class="section-label">contact</div>
+<h2>Let's Connect</h2>
+<div class="contact-wrapper">
+<div class="contact-text">
+<p>I'm open to data engineering roles, database consulting, and interesting conversations about large-scale data systems, infrastructure, and performance engineering.</p>
+<p>Feel free to reach out — I'll get back to you.</p>
+</div>
+<div class="contact-links">
+<a class="contact-link" href="https://github.com/abolfazlrastgar" target="_blank">
+<div class="contact-link-icon">⌥</div>
+<div class="contact-link-text"><strong>GitHub</strong><span>github.com/abolfazlrastgar</span></div>
+</a>
+<a class="contact-link" href="https://www.linkedin.com/in/abolfazl-rastgar" rel="noopener" target="_blank">
+<div class="contact-link-icon">in</div>
+<div class="contact-link-text"><strong>LinkedIn</strong><span>linkedin.com/in/abolfazl-rastgar</span></div>
+</a>
+<a class="contact-link" href="mailto:ablfzl.rstgr@gmail.com">
+<div class="contact-link-icon">@</div>
+<div class="contact-link-text"><strong>Email</strong><span>ablfzl.rstgr@gmail.com</span></div>
+</a>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<p>© 2025 <span class="footer-accent">Abolfazl Rastgar</span></p>
+<p>Built with <span class="footer-accent">HTML / CSS / JS</span> · Hosted on GitHub Pages</p>
+</footer>
+<script>
         const langColors = {
             Python: '#3572A5',
             JavaScript: '#f1e05a',
@@ -1828,5 +2846,4 @@
         loadProjects();
     </script>
 </body>
-
 </html>
